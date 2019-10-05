@@ -29,7 +29,12 @@ class PicList extends React.Component {
     onDeleteItem=(id)=>{
         this.props.delete_info(id)
         const {price,tags}=this.props.Infos[id]
-        tags.indexOf('outgoing')?this.props.deleteOutgoings(price):this.props.deleteIncome(price)
+        alert(price,typeof price)
+        if(tags.indexOf('Outgoings')!=-1){
+          this.props.deleteOutgoings(price)
+        }else{
+          this.props.deleteIncome(price)
+        }
     }
     
   render() {
@@ -66,7 +71,7 @@ class PicList extends React.Component {
               <span>
                 {tags.map(tag => {
                   let color = tag.length > 5 ? 'geekblue' : 'green';
-                  if (tag === 'outgoing') {
+                  if (tag === 'Outgoings') {
                     color = 'volcano';
                   }
                   return (

@@ -1,9 +1,11 @@
 import React from 'react'
 import { Modal, Button,InputNumber} from 'antd'
+import {change_budget} from '../../redux/actions/actions'
+import {connect} from 'react-redux'
+import {withRouter} from 'react-router-dom'
+//用modal来输入budget
 
-
-
-export default class Budget extends React.Component {
+ class Budget extends React.Component {
   state = { visible: false,sured:false,
     budget:0
     };
@@ -19,17 +21,17 @@ export default class Budget extends React.Component {
     this.setState({
       visible: false,sured:true
     });
-    console.log(this.state.budget)
+    this.props.change_budget(this.state.budget)
   };
 
   handleCancel = e => {
-    console.log(e);
+    
     this.setState({
       visible: false,
     });
   };
-  handleChanage=value=>{
-      this.props({budget:value})
+  handleChanage=budget=>{
+      this.setState({budget})
   }
 
   
@@ -45,9 +47,12 @@ export default class Budget extends React.Component {
           onOk={this.handleOk}
           onCancel={this.handleCancel}
         >
-          <InputNumber size="large" min={1} max={100000} defaultValue={3}  onChange={this.handleChanage} />
+          <InputNumber size="large" min={1} max={100000} defaultValue={0}  onChange={this.handleChanage} />
         </Modal>
       </div>
     );
   }
 }
+
+Budget=connect(null,{change_budget})(Budget);
+export default withRouter(Budget)

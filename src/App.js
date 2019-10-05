@@ -19,7 +19,7 @@ class App extends React.Component{
     render(){ 
       return (
         <Layout>
-        <Header style={{height:"100px"}}/>
+        <Header style={{height:"75px"}}/>
         <Content style={{height:"700px"}}>
           <Switch>
             <Redirect from='/' exact to='/viewTable' ></Redirect>

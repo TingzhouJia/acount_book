@@ -1,4 +1,4 @@
-import {CHANGE_INCOME,CHANGE_OUTGOINGS,DELETE_OUTGOINGS, DELETE_INCOME,ADD_INFO,DELETE_INFO,GET_INFO,EDIT_INFO} from "./actions_type";
+import {CHANGE_INCOME,CHANGE_OUTGOINGS,DELETE_OUTGOINGS, DELETE_INCOME,ADD_INFO,DELETE_INFO,GET_INFO,EDIT_INFO,CHANGE_BUDGET} from "./actions_type";
 import reducers from '../reducer'
 
 export const changeIncome=(num)=>({type:CHANGE_INCOME,data:num})
@@ -14,6 +14,8 @@ export const add_info=(info)=>({type:ADD_INFO,data:info})
 export const delete_info=(index)=>({type:DELETE_INFO,data:index})
 
 export const edit_info=(info)=>({type:EDIT_INFO,data:info})
+
+export const change_budget=(num)=>({type:CHANGE_BUDGET,data:num})
 
 const get_info=(infos)=>({type:GET_INFO,data:infos})
 

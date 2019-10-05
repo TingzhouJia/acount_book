@@ -16,7 +16,7 @@ class Information extends React.Component{
         this.setState({Description})
     }
     handleNumberChange=(event)=>{
-        const price=event.target.value
+        const price=(event.target.value)/1
         this.setState({price})
     }
     getDate=(date,dateString)=>{
@@ -28,13 +28,17 @@ class Information extends React.Component{
         if(info.tags.length!=2){
             //说明没有选择，就添加默认值
             const {tags}=this.state
-            tags.push('outgoing')
+            tags.push('Outgoings')
             this.setState({tags})
           
         }
-        this.state.tags.indexOf('outgoing')?this.props.changeOutgoings(this.state.price):this.props.changeIncome(this.state.price)
+        if(this.state.tags.indexOf('Outgoings') !=-1){
+          this.props.changeOutgoings(this.state.price)
+        }else{
+          this.props.changeIncome(this.state.price)
+        }
         this.props.add_info(info);
-        this.setState({Description:'',price:0,date:''})
+        this.setState({Description:'',price:0,date:'',tags:[],icon:''})
         this.props.history.push('/viewTable')
     }
     set=(key)=>{

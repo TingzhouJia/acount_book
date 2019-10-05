@@ -1,31 +1,34 @@
 import React from 'react'
-import { PageHeader, Tag, Button, Statistic, Descriptions, Row } from 'antd';
+import { PageHeader, Tag, Button, Statistic,  Row } from 'antd';
 import {connect} from 'react-redux'
 import {Link, withRouter} from 'react-router-dom'
 import Budget from '../Budget/budget'
+import './header.less'
 class Header extends React.Component{
     
     render(){
         return <PageHeader
            
             title="Welcome to Shark Bookkeeping"
-            tags={<Tag color="blue">Running</Tag>}
+            
 
             extra={[
               <Link to='/viewTable'>
                   <Button key="3">Records</Button>
               </Link>,
-              <Budget change={this.change}/>,
+              <Budget key="2"/>,
               <Link to='/new_record'>
-                  <Button key="1" type="primary">
-                Bookkeeping
-              </Button>
-              </Link>
-              
+                <Button key="1" type="primary">Bookkeeping</Button>
+              </Link>,
+              <Link to="/bill">
+                <Button key="4">Bills</Button>
+              </Link> 
             ]} 
+
+           
           >
             <Row type="flex">
-              <Statistic title="Budget" value={0} />
+              <Statistic title="Budget" prefix="$" value={this.props.budget} />
               <Statistic
                 title="Outgoings"
                 prefix="$"
@@ -39,5 +42,5 @@ class Header extends React.Component{
           </PageHeader>
     }
 }
-Header=connect((state)=>({outgoing:state.Finance.outgoing,income:state.Finance.income}))(Header)
+Header=connect((state)=>({outgoing:state.Finance.outgoing,income:state.Finance.income,budget:state.Finance.budget}))(Header)
 export default withRouter(Header)
