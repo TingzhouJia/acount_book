@@ -7,40 +7,62 @@ import {
   Tooltip,
   Coord,
   Label,
- 
+ Legend,
   Guide,
   
 } from "bizcharts";
 import DataSet from "@antv/data-set";
-
+import './yearCircle.css'
 class YearCircle extends React.Component {
   render() {
     const { DataView } = DataSet;
     const { Html } = Guide;
-    const data = [
+    const outcomedata = [
       {
-        item: "事例一",
+        item: "food",
         count: 40
       },
       {
-        item: "事例二",
+        item: "utility",
         count: 21
       },
       {
-        item: "事例三",
+        item: "entertainment",
         count: 17
       },
       {
-        item: "事例四",
+        item: "travel",
         count: 13
       },
       {
-        item: "事例五",
+        item: "social",
         count: 9
       }
     ];
+    const incomedata = [
+      {
+        item: "parttime",
+        count: 40
+      },
+      {
+        item: "investment",
+        count: 21
+      },
+      {
+        item: "salary",
+        count: 17
+      },
+      
+    ];
     const dv = new DataView();
-    dv.source(data).transform({
+    dv.source(outcomedata).transform({
+      type: "percent",
+      field: "count",
+      dimension: "item",
+      as: "percent"
+    });
+    const incomeDV=new DataView();
+    incomeDV.source(incomedata).transform({
       type: "percent",
       field: "count",
       dimension: "item",
@@ -55,16 +77,20 @@ class YearCircle extends React.Component {
       }
     };
     return (
-      <div>
+      <div className="two_year_chart">
         <Chart
-          height={window.innerHeight*0.2}
+          height={window.innerHeight*0.5}
           data={dv}
           scale={cols}
-         
-          forceFit
+          width={window.innerWidth*0.25}
+          
         >
           <Coord type={"theta"} radius={0.75} innerRadius={0.6} />
-         
+          <Legend
+            position="right"
+            offsetY={-window.innerHeight*0.24}
+            offsetX={-window.innerWidth*0.2}
+          />
           <Tooltip
             showTitle={false}
             itemTpl="<li><span style=&quot;background-color:{color};&quot; class=&quot;g2-tooltip-marker&quot;></span>{name}: {value}</li>"
@@ -72,7 +98,7 @@ class YearCircle extends React.Component {
           <Guide>
             <Html
               position={["50%", "50%"]}
-              html="<div style=&quot;color:#8c8c8c;font-size:1.16em;text-align: center;width: 10em;&quot;>主机<br><span style=&quot;color:#262626;font-size:2.5em&quot;>200</span>台</div>"
+              html="<div style=&quot;color:#8c8c8c;font-size:1.6em;text-align: center;width: 10em;&quot;>Outcome<br><span style=&quot;color:#262626;font-size:1em&quot;>$</span><span style=&quot;color:#262626;font-size:1.4em&quot;>20000</span></div>"
               alignX="middle"
               alignY="middle"
             />
@@ -96,24 +122,23 @@ class YearCircle extends React.Component {
               stroke: "#fff"
             }}
           >
-            <Label
-              content="percent"
-              formatter={(val, item) => {
-                return item.point.item + ": " + val;
-              }}
-            />
+            
           </Geom>
         </Chart>
         <Chart
-          height={window.innerHeight*0.2}
-          data={dv}
+          height={window.innerHeight*0.5}
+          data={incomeDV}
           scale={cols}
           
-          forceFit
+          width={window.innerWidth*0.25}
         >
           <Coord type={"theta"} radius={0.75} innerRadius={0.6} />
           <Axis name="percent" />
-          
+          <Legend
+            position="right"
+            offsetY={-window.innerHeight*0.26}
+            offsetX={-window.innerWidth*0.2}
+          />
           <Tooltip
             showTitle={false}
             itemTpl="<li><span style=&quot;background-color:{color};&quot; class=&quot;g2-tooltip-marker&quot;></span>{name}: {value}</li>"
@@ -121,7 +146,7 @@ class YearCircle extends React.Component {
           <Guide>
             <Html
               position={["50%", "50%"]}
-              html="<div style=&quot;color:#8c8c8c;font-size:1.16em;text-align: center;width: 10em;&quot;>主机<br><span style=&quot;color:#262626;font-size:2.5em&quot;>200</span>台</div>"
+              html="<div style=&quot;color:#8c8c8c;font-size:1.6em;text-align: center;width: 10em;&quot;>Income<br><span style=&quot;color:#262626;font-size:1em&quot;>$</span><span style=&quot;color:#262626;font-size:1.4em&quot;>20000</span></div>"
               alignX="middle"
               alignY="middle"
             />
@@ -145,12 +170,7 @@ class YearCircle extends React.Component {
               stroke: "#fff"
             }}
           >
-            <Label
-              content="percent"
-              formatter={(val, item) => {
-                return item.point.item + ": " + val;
-              }}
-            />
+           
           </Geom>
         </Chart>
 

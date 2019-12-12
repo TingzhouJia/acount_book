@@ -16,9 +16,9 @@ class Header extends React.Component{
               <li>Balance:{this.props.budget}</li>
             </div>
             <div className="router_list">
-              <p><Link to="/viewTable">My Records</Link></p>
-              <p><Link to="/viewTable">My Chars</Link></p>
-              <p><Link to="/new_record">Add Records</Link></p>
+              <p><Link to="/home/viewTable">My Records</Link></p>
+              <p><Link to="/viewTable">Saving Society</Link></p>
+              <p><Link to="/home/new_record">Add Records</Link></p>
             </div>
             <Avatar className="avatar"></Avatar>
           </div>)

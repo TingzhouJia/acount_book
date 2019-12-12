@@ -3,12 +3,15 @@ import {Redirect,Switch,Route} from 'react-router-dom'
 import "antd/dist/antd.css";
 import {Layout} from 'antd'
 import 'antd/dist/antd.css'
+
 import ViewTabs from './pages/viewTab/viewtab'
 import Header from './components/Header/header'
 import NewRecord from './pages/new_record/new_record'
 import NotFound from './pages/NotFound/notFound'
 import PropTypes from 'prop-types'
-const {Content,Footer}=Layout
+import YearChart from './pages/YearCharts/YearCharts'
+import './App.css'
+const {Content}=Layout
 class App extends React.Component{
   static PropType={
       changeIncome:PropTypes.number.isRequired,
@@ -22,9 +25,15 @@ class App extends React.Component{
         <Header />
         <Content >
           <Switch>
-            <Redirect from='/' exact to='/viewTable' ></Redirect>
-            <Route path='/viewTable' component={ViewTabs}></Route>
-            <Route path='/new_record' component={NewRecord}></Route>
+            
+            <Route  path='/home'>
+            <div className="router">
+            <YearChart/>
+            <Route path='/home/viewTable' component={ViewTabs}></Route>
+            <Route path='/home/new_record' component={NewRecord}></Route>
+            </div>
+            </Route>
+            
             <Route component={NotFound}></Route>
           </Switch>
         </Content>
