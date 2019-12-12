@@ -19,8 +19,8 @@ class App extends React.Component{
     render(){ 
       return (
         <Layout>
-        <Header style={{height:"75px"}}/>
-        <Content style={{height:"700px"}}>
+        <Header />
+        <Content >
           <Switch>
             <Redirect from='/' exact to='/viewTable' ></Redirect>
             <Route path='/viewTable' component={ViewTabs}></Route>
@@ -28,7 +28,7 @@ class App extends React.Component{
             <Route component={NotFound}></Route>
           </Switch>
         </Content>
-        <Footer>Footer</Footer>
+       
       </Layout>
         
       )

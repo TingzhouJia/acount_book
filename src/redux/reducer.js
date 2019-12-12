@@ -1,3 +1,4 @@
+
 import {CHANGE_INCOME,CHANGE_OUTGOINGS,ADD_INFO,EDIT_INFO,DELETE_INFO,GET_INFO, DELETE_INCOME, DELETE_OUTGOINGS,CHANGE_BUDGET} from './actions/actions_type'
 import {combineReducers} from 'redux'
 const initFiance={

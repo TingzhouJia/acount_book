@@ -1,0 +1,46 @@
+
+
+.Header_fold {
+    width: 100%;
+    height:10vh;
+    display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   align-items: center;
+   background: yellow;
+}
+    
+.Header_fold>h3{
+    font-size: 2rem;
+    margin-left: 1vh;
+}
+    
+
+.router_list{
+    display: flex;
+    justify-content: space-between;
+   font-weight: 500;
+    width: 25%;
+    font-size: 1.1rem;
+    
+   
+}
+.router_list>p{
+    margin: 0;
+}
+.router_list > p > a{
+    color: black;
+    
+}
+
+.recordList{
+    width: 25%;
+    list-style: none;
+    justify-content: space-between;
+   
+    display: flex;
+   
+}
+.ant-avatar{
+   margin-right: 2vw ;
+}

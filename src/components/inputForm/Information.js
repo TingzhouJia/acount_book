@@ -5,6 +5,7 @@ import {outgoingList,incomeList}from '../../components/Utils/utils'
 import {Icons} from '../../iconRes/icons';
 import {connect} from 'react-redux'
 import {withRouter}from 'react-router-dom'
+import './information.css'
 import {add_info,edit_info,changeIncome,changeOutgoings} from '../../redux/actions/actions'
 const { TabPane } = Tabs;
 class Information extends React.Component{
@@ -59,7 +60,7 @@ class Information extends React.Component{
         
         return (
         
-    <Form layout="inline" onSubmit={this.handleSubmit}>
+    <Form layout="inline" onSubmit={this.handleSubmit} className="info_form">
     <Tabs defaultActiveKey="2" onChange={this.set}>
     <TabPane
       tab={

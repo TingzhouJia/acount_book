@@ -1,45 +1,28 @@
 import React from 'react'
-import { PageHeader, Tag, Button, Statistic,  Row } from 'antd';
+
 import {connect} from 'react-redux'
 import {Link, withRouter} from 'react-router-dom'
 import Budget from '../Budget/budget'
-import './header.less'
+import Avatar from '../Avatar/avatar'
+import './header.css'
 class Header extends React.Component{
     
     render(){
-        return <PageHeader
-           
-            title="Welcome to Shark Bookkeeping"
-            
-
-            extra={[
-              <Link to='/viewTable'>
-                  <Button key="3">Records</Button>
-              </Link>,
-              <Budget key="2"/>,
-              <Link to='/new_record'>
-                <Button key="1" type="primary">Bookkeeping</Button>
-              </Link>,
-              <Link to="/bill">
-                <Button key="4">Bills</Button>
-              </Link> 
-            ]} 
-
-           
-          >
-            <Row type="flex">
-              <Statistic title="Budget" prefix="$" value={this.props.budget} />
-              <Statistic
-                title="Outgoings"
-                prefix="$"
-                value={this.props.outgoing}
-                style={{
-                  margin: '0 32px',
-                }}
-              />
-              <Statistic title="Income" prefix="$" value={this.props.income} />
-            </Row>
-          </PageHeader>
+        return(<div className="Header_fold">
+            <h3>Shark Bookkeeping</h3>
+            <div className="recordList">
+              <li>Outcomes:{this.props.outgoing}</li>
+              <li>Incomes:{this.props.income}</li>
+              <li>Balance:{this.props.budget}</li>
+            </div>
+            <div className="router_list">
+              <p><Link to="/viewTable">My Records</Link></p>
+              <p><Link to="/viewTable">My Chars</Link></p>
+              <p><Link to="/new_record">Add Records</Link></p>
+            </div>
+            <Avatar className="avatar"></Avatar>
+          </div>)
+        
     }
 }
 Header=connect((state)=>({outgoing:state.Finance.outgoing,income:state.Finance.income,budget:state.Finance.budget}))(Header)

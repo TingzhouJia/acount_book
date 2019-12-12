@@ -3,11 +3,13 @@ import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css'
 import App from './App';
 import {Provider} from 'react-redux'
-import { BrowserRouter,Route } from 'react-router-dom';
+
+import { BrowserRouter,Route ,IndexRoute,browserHistory} from 'react-router-dom';
 import store from './redux/store'
 ReactDOM.render(<Provider store={store}>
-    <BrowserRouter>
-                <Route to='/' component={App}/>
+    <BrowserRouter > 
+                
+                <Route to='/home' component={App}/>
     </BrowserRouter>
 </Provider>, 
     document.getElementById('root'));
