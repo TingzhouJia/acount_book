@@ -1,20 +1,16 @@
 import React from 'react'
-import { Tabs ,Icon,Select, Divider } from 'antd';
-import {LIST_VIEW,GRAPH_VIEW} from '../../components/Utils/utils'
 import PicList from '../../components/pictureList/pictureList'
-import {connect} from 'react-redux'
+import {useSelector} from 'react-redux'
 import './viewtab.css'
 import SearchBar from '../../components/SearchBar/SearchBar'
-const { TabPane} = Tabs;
 
 
-class ViewTabs extends React.Component{
-    handleChange=()=>{
+
+const ViewTabs =()=>{
+   
+      const info=useSelector(state=>state.Details)
       
-    }
-    render(){
       
-      const {info}=this.props
       return (
         <div className="viewTab">
           <SearchBar></SearchBar>
@@ -27,9 +23,8 @@ class ViewTabs extends React.Component{
       )
      
     }
-}
 
-const mapStateProps=state=>({
-  info:state.Details
-})
-export default ViewTabs=connect(mapStateProps)(ViewTabs)
+
+
+
+export default ViewTabs

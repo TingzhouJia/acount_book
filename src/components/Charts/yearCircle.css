@@ -1,4 +1,4 @@
-.two_year_chart{
+.two_year_chart,.YearLine{
     width: 50vw;
     height: 40vh;
     display: flex;

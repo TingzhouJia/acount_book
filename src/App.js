@@ -23,16 +23,18 @@ class App extends React.Component{
       return (
         <Layout>
         <Header />
-        <Content >
+        <Content style={{height:"90vh",width:"100vw"}} >
           <Switch>
             
-            <Route  path='/home'>
+            <Route path="/home/*">
             <div className="router">
             <YearChart/>
             <Route path='/home/viewTable' component={ViewTabs}></Route>
             <Route path='/home/new_record' component={NewRecord}></Route>
             </div>
             </Route>
+            
+           
             
             <Route component={NotFound}></Route>
           </Switch>

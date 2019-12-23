@@ -1,19 +1,19 @@
 import React from 'react'
 
-import {connect} from 'react-redux'
-import {Link, withRouter} from 'react-router-dom'
+import {useSelector} from 'react-redux'
+import {Link} from 'react-router-dom'
 import Budget from '../Budget/budget'
 import Avatar from '../Avatar/avatar'
 import './header.css'
-class Header extends React.Component{
-    
-    render(){
-        return(<div className="Header_fold">
+
+const Header=(props)=>{
+  const {outgoing,income,budget}=useSelector(state=>state.Finance)
+  return(<div className="Header_fold">
             <h3>Shark Bookkeeping</h3>
             <div className="recordList">
-              <li>Outcomes:{this.props.outgoing}</li>
-              <li>Incomes:{this.props.income}</li>
-              <li>Balance:{this.props.budget}</li>
+              <li>Outcomes:{outgoing}</li>
+              <li>Incomes:{income}</li>
+              <li>Balance:{budget}</li>
             </div>
             <div className="router_list">
               <p><Link to="/home/viewTable">My Records</Link></p>
@@ -22,8 +22,5 @@ class Header extends React.Component{
             </div>
             <Avatar className="avatar"></Avatar>
           </div>)
-        
-    }
 }
-Header=connect((state)=>({outgoing:state.Finance.outgoing,income:state.Finance.income,budget:state.Finance.budget}))(Header)
-export default withRouter(Header)
+export default Header;

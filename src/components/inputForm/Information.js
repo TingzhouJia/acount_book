@@ -1,67 +1,88 @@
-import React from 'react'
+import React,{useState,useReducer} from 'react'
 import {Form,Input,Button,DatePicker,Radio,Tabs} from 'antd'
-import {Link,Redirect} from 'react-router-dom'
 import {outgoingList,incomeList}from '../../components/Utils/utils'
 import {Icons} from '../../iconRes/icons';
-import {connect} from 'react-redux'
-import {withRouter}from 'react-router-dom'
+import {useDispatch} from 'react-redux'
+import {useHistory}from 'react-router-dom'
 import './information.css'
-import {add_info,edit_info,changeIncome,changeOutgoings} from '../../redux/actions/actions'
+import {ADD_INFO,CHANGE_INCOME,CHANGE_OUTGOINGS} from '../../redux/actions/actions_type'
+
 const { TabPane } = Tabs;
-class Information extends React.Component{
-    state={
-      Description:'',price:0,date:'',tags:[],icon:''
+const init={Description:'',price:0,date:'',tags:[],icon:'',type:''}
+const reducer=(state,action)=>{
+  switch(action.type){
+    case 'discription':return {...state,Description:action.data};
+    case 'price':return {...state,price:action.data};
+    case 'date':return {...state,date:action.data};
+    case 'type':return {...state,type:action.data};
+    case 'icon':return {...state,icon:action.data};
+    case 'reload':return {...init};
+  }
+}
+const Information=()=>{
+    const [state,innerdispatch]=useReducer(reducer,init)
+   
+    const history=useHistory()
+    const dispatch=useDispatch()
+    const getInfo=(event)=>{
+        
+        const description=event.target.value
+        innerdispatch({type:'discription',data:description})
     }
-    getInfo=(event)=>{
-        const Description=event.target.value
-        this.setState({Description})
-    }
-    handleNumberChange=(event)=>{
+    const handleNumberChange=(event)=>{
         const price=(event.target.value)/1
-        this.setState({price})
+        innerdispatch({type:'price',data:price})
     }
-    getDate=(date,dateString)=>{
-        this.setState({date:dateString})
+    const getDate=(date,dateString)=>{
+       innerdispatch({type:'date',data:dateString})
     }
-    handleSubmit=(e)=>{
+    const handleSubmit=(e)=>{
         e.preventDefault()
-        const info=this.state
-        if(info.tags.length!=2){
+        
+        if(state.type===''){
             //说明没有选择，就添加默认值
-            const {tags}=this.state
-            tags.push('Outgoings')
-            this.setState({tags})
           
+            // tags.push('Outgoings')
+            // this.setState({tags})
+            state.type="Outgoings"
+            //settags([...Tags,"Outgoings"])
         }
-        if(this.state.tags.indexOf('Outgoings') !=-1){
-          this.props.changeOutgoings(this.state.price)
+       state.tags=[state.type,state.icon]
+       
+        if(state.tags.indexOf('Outgoings') !=-1){
+          dispatch({type:CHANGE_OUTGOINGS,data:state.price})
+          // this.props.changeOutgoings(this.state.price)
         }else{
-          this.props.changeIncome(this.state.price)
+          dispatch({type:CHANGE_INCOME,data:state.price})
         }
-        this.props.add_info(info);
-        this.setState({Description:'',price:0,date:'',tags:[],icon:''})
-        this.props.history.push('/viewTable')
+        dispatch({type:ADD_INFO,data:state})
+        
+        history.push('/home/viewTable')
     }
-    set=(key)=>{
-        const {tags}=this.state
-        tags.push(key)
-        this.setState({tags})
+    const set=(key)=>{
+        // const {tags}=this.state
+        // tags.push(key)
+        // this.setState({tags})
+       
+        innerdispatch({type:'type',data:key})
+       
     }
     
-    getType=(event)=>{
+    const getType=(event)=>{
         const type=event.target.value
-        this.setState({icon:type})
-        const {tags}=this.state
-        tags.push(type)
-        this.setState({tags})
+        // this.setState({icon:type})
+        // const {tags}=this.state
+        // tags.push(type)
+        // this.setState({tags})
+       innerdispatch({type:'icon',data:type})
         
     }
-    render(){
+   
         
         return (
         
-    <Form layout="inline" onSubmit={this.handleSubmit} className="info_form">
-    <Tabs defaultActiveKey="2" onChange={this.set}>
+    <Form layout="inline" onSubmit={handleSubmit} className="info_form">
+    <Tabs defaultActiveKey="2" onChange={set} >
     <TabPane
       tab={
         <span>
@@ -72,7 +93,7 @@ class Information extends React.Component{
       
       
     >
-    <Radio.Group onChange={this.getType} >
+    <Radio.Group onChange={getType} >
         {outgoingList.map((item,index)=>{
                 return <Radio key={index} value={item.title}><Icons type={item.icon} style={{ fontSize: '30px', color: 'black' }}/>{item.title}</Radio>
                 })}
@@ -86,7 +107,7 @@ class Information extends React.Component{
       }
       key="Incomes"
     >
-      <Radio.Group onChange={this.getType} defaultValue="a">
+      <Radio.Group onChange={getType} defaultValue="a">
         {incomeList.map((item,index)=>{
                 
                 return <Radio key={index} value={item.title} style={{marginLeft:"10px"}}><Icons type={item.icon} style={{ fontSize: '30px', color: 'black' }}/>{item.title}</Radio>
@@ -96,18 +117,20 @@ class Information extends React.Component{
     </TabPane>
   </Tabs>
       <Form.Item label="Description">
-        <Input  onChange={this.getInfo}/>
+        <Input  onChange={getInfo}/>
       </Form.Item>
       <Form.Item label="Price">
+      
           <Input
+            prefix="$" suffix="CAD"
             type="text"
-            size="large"
-            onChange={this.handleNumberChange}
-            style={{ width: '65%', marginRight: '3%' }}
+           
+            onChange={handleNumberChange}
+            style={{ width: '10vw', marginRight: '3%',}}
           />
         </Form.Item>
         <Form.Item label="DatePicker">
-         {(<DatePicker onChange={this.getDate}/>)}
+         <DatePicker onChange={getDate}/>
         </Form.Item>
         
         <Button type="primary" htmlType="submit">
@@ -116,8 +139,8 @@ class Information extends React.Component{
         
     </Form>
         )
-    }
+    
 }
 
-Information=connect(null,{add_info,changeIncome,changeOutgoings})(Information)
-export default withRouter(Information)
+// Information=connect(null,{add_info,changeIncome,changeOutgoings})(Information)
+export default Information

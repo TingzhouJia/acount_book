@@ -7,7 +7,7 @@ import {
   Legend, 
 } from "bizcharts";
 
-class lineChart extends React.Component {
+class YearLine extends React.Component {
   render() {
     const data = [
       {
@@ -137,44 +137,44 @@ class lineChart extends React.Component {
       }
     };
     return (
- 
-        <Chart height={window.innerHeight*0.3} data={data} scale={cols} forceFit>
-          <Legend />
-          <Axis name="month" />
-          <Axis
-            name="temperature"
-            label={{
-              formatter: val => `$${val}k`
-            }}
-          />
-          <Tooltip
-            crosshairs={{
-              type: "y"
-            }}
-          />
-          <Geom
-            type="line"
-            position="month*temperature"
-            size={2}
-            color={"type"}
-            shape={"smooth"}
-          />
-          <Geom
-            type="point"
-            position="month*temperature"
-            size={4}
-            shape={"circle"}
-            color={"type"}
-            style={{
-              stroke: "#fff",
-              lineWidth: 1
-            }}
-          />
-        </Chart>
+        <div className="YearLine"><Chart height={window.innerHeight*0.3} data={data} scale={cols} forceFit>
+        <Legend />
+        <Axis name="month" />
+        <Axis
+          name="temperature"
+          label={{
+            formatter: val => `$${val}k`
+          }}
+        />
+        <Tooltip
+          crosshairs={{
+            type: "y"
+          }}
+        />
+        <Geom
+          type="line"
+          position="month*temperature"
+          size={2}
+          color={"type"}
+          shape={"smooth"}
+        />
+        <Geom
+          type="point"
+          position="month*temperature"
+          size={4}
+          shape={"circle"}
+          color={"type"}
+          style={{
+            stroke: "#fff",
+            lineWidth: 1
+          }}
+        />
+      </Chart></div>
+        
 
     );
   }
 }
-export default lineChart;
+export default YearLine;
 
 

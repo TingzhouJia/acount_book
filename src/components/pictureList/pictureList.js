@@ -1,8 +1,8 @@
 import React from 'react'
 import { Table,  Button,Divider ,Tag} from 'antd';
-import {edit_info,delete_info,deleteIncome,deleteOutgoings,changeIncome,changeOutgoings} from '../../redux/actions/actions'
+import {edit_info,DELETE_INFO,DELETE_INCOME,DELETE_OUTGOINGS,changeIncome,changeOutgoings} from '../../redux/actions/actions_type'
 import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
+import {useDispatch} from 'react-redux'
 import {Icons} from '../../iconRes/icons'
 // const items=[
 //     {id:1,Description:' take trip in Ottawa',
@@ -12,7 +12,7 @@ import {Icons} from '../../iconRes/icons'
 //     {id:3,Description:' kkkkkk',
 //     price:2000,date:'2018-09-18',tags:['travel','outcome']}
 //   ]
-class PicList extends React.Component {
+const PicList=(props)=>{
     // state={
     //     items:[
     //     {id:1,icon:'icon-lvxing',Description:' take trip in Ottawa',price:2000,date:'2018-09-18',tags:['travel','outcome']},
@@ -23,23 +23,22 @@ class PicList extends React.Component {
       
     // ]
     // }
-    onModifyItem=(id)=>{
-        alert(id)
-    }
-    onDeleteItem=(id)=>{
-        this.props.delete_info(id)
-        const {price,tags}=this.props.Infos[id]
-        alert(price,typeof price)
+    const dispatch=useDispatch()
+    const onDeleteItem=(id)=>{
+       
+        const {price,tags}=props.Infos[id]
+        
         if(tags.indexOf('Outgoings')!=-1){
-          this.props.deleteOutgoings(price)
+          dispatch({type:DELETE_OUTGOINGS,data:price})
         }else{
-          this.props.deleteIncome(price)
+          dispatch({type:DELETE_INCOME,data:price})
         }
+        dispatch({type:DELETE_INFO,data:id})
     }
     
-  render() {
+  
         
-      const items=this.props.Infos
+      const items=props.Infos
       const columns = [
           {title:'',
             dataIndex:'icon',
@@ -88,9 +87,9 @@ class PicList extends React.Component {
             key: 'action',
             render: (text, record,id) => (
               <span>
-                <Button icon='edit' onClick={this.onModifyItem.bind(this,id)} onChange=''></Button>
+                <Button icon='edit' ></Button>
                 <Divider type="vertical" />
-                <Button icon='delete' onClick={this.onDeleteItem.bind(this,id)}></Button>
+                <Button icon='delete' onClick={onDeleteItem.bind(this,id)}></Button>
                 {/*     用箭头函数和bind方法绑定传值是等价的 */}
               </span>
             )
@@ -98,16 +97,16 @@ class PicList extends React.Component {
       ];
 
     return (  
-          <Table dataSource={items} columns={columns} />
+          <Table dataSource={items} columns={columns} rowKey="id" style={{width:"50vw"}}/>
     )
         }
-}
+
 PicList.propTypes={
     Infos:PropTypes.array.isRequired
 }
 
-const mapStateProps=state=>({
-  Infos:state.Details
-})
+// const mapStateProps=state=>({
+//   Infos:state.Details
+// })
 
-export default PicList=connect(mapStateProps,{delete_info,changeIncome,changeOutgoings,deleteIncome,deleteOutgoings})(PicList)
+export default PicList
