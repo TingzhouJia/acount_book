@@ -17,7 +17,7 @@ const Header=(props)=>{
             </div>
             <div className="router_list">
               <p><Link to="/home/viewTable">My Records</Link></p>
-              <p><Link to="/viewTable">Saving Society</Link></p>
+              <p><Link to="/share">Saving Society</Link></p>
               <p><Link to="/home/new_record">Add Records</Link></p>
             </div>
             <Avatar className="avatar"></Avatar>

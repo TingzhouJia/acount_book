@@ -1,5 +1,5 @@
-import React,{useState,useReducer} from 'react'
-import {Form,Input,Button,DatePicker,Radio,Tabs} from 'antd'
+import React,{useState,useReducer, useCallback,useEffect} from 'react'
+import {Form,Input,Button,DatePicker,Radio,Tabs,message} from 'antd'
 import {outgoingList,incomeList}from '../../components/Utils/utils'
 import {Icons} from '../../iconRes/icons';
 import {useDispatch} from 'react-redux'
@@ -21,24 +21,29 @@ const reducer=(state,action)=>{
 }
 const Information=()=>{
     const [state,innerdispatch]=useReducer(reducer,init)
-   
+    const [change,setChange]=useState(false)
+    const [clean,setClean]=useState('')
     const history=useHistory()
     const dispatch=useDispatch()
-    const getInfo=(event)=>{
-        
-        const description=event.target.value
-        innerdispatch({type:'discription',data:description})
-    }
-    const handleNumberChange=(event)=>{
+    const getInfo=useCallback((event)=>{
+      setChange(false)
+      const description=event.target.value
+      innerdispatch({type:'discription',data:description})
+  },[state.Description])
+    const handleNumberChange=useCallback((event)=>{
+        setChange(false)
         const price=(event.target.value)/1
         innerdispatch({type:'price',data:price})
-    }
-    const getDate=(date,dateString)=>{
-       innerdispatch({type:'date',data:dateString})
-    }
+    },[state.price])
+    const getDate=useCallback((date,dateString)=>{
+      innerdispatch({type:'date',data:dateString})
+   },[state.date])
     const handleSubmit=(e)=>{
         e.preventDefault()
-        
+        if(!state.icon){
+          message.info('Oops, no icon chosen')
+          return;
+        }
         if(state.type===''){
             //说明没有选择，就添加默认值
           
@@ -59,24 +64,24 @@ const Information=()=>{
         
         history.push('/home/viewTable')
     }
-    const set=(key)=>{
-        // const {tags}=this.state
-        // tags.push(key)
-        // this.setState({tags})
-       
-        innerdispatch({type:'type',data:key})
-       
-    }
+    const set=useCallback((key)=>{
+      // const {tags}=this.state
+      // tags.push(key)
+      // this.setState({tags})
     
-    const getType=(event)=>{
-        const type=event.target.value
-        // this.setState({icon:type})
-        // const {tags}=this.state
-        // tags.push(type)
-        // this.setState({tags})
-       innerdispatch({type:'icon',data:type})
-        
-    }
+      innerdispatch({type:'type',data:key})
+      setChange(true)
+      setClean('')
+  },[state.type])
+    
+    const getType=useCallback((event)=>{
+      const type=event.target.value
+      // this.setState({icon:type})
+      // const {tags}=this.state
+      // tags.push(type)
+      // this.setState({tags})
+     innerdispatch({type:'icon',data:type})   
+  },[state.icon])
    
         
         return (
@@ -117,14 +122,14 @@ const Information=()=>{
     </TabPane>
   </Tabs>
       <Form.Item label="Description">
-        <Input  onChange={getInfo}/>
+        <Input  onChange={getInfo} value={change?clean:state.Description} />
       </Form.Item>
       <Form.Item label="Price">
       
           <Input
             prefix="$" suffix="CAD"
             type="text"
-           
+            value={change?clean:state.price}
             onChange={handleNumberChange}
             style={{ width: '10vw', marginRight: '3%',}}
           />

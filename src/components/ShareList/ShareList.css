@@ -1,0 +1,33 @@
+.showList_container{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    margin-top: 5vw;
+}
+.shareList_items{
+    display: flex;
+    flex-direction: column;
+    margin-right: 3vw;
+    justify-content: center;
+    text-align: center;
+    font-weight: 500;
+    font-size: 1.2rem;
+    color: #000000;
+}
+.showList_item{
+    margin-bottom: 1vw;
+    width: 9vw;
+    height: 9vw;
+    overflow: hidden;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    transition: 0.5s;
+    
+}
+.showList_item:hover{
+    width: 11vw;
+    height: 11vw;
+}

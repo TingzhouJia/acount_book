@@ -9,6 +9,7 @@ import Header from './components/Header/header'
 import NewRecord from './pages/new_record/new_record'
 import NotFound from './pages/NotFound/notFound'
 import PropTypes from 'prop-types'
+import Share from './pages/Share/Share'
 import YearChart from './pages/YearCharts/YearCharts'
 import './App.css'
 const {Content}=Layout
@@ -25,7 +26,7 @@ class App extends React.Component{
         <Header />
         <Content style={{height:"90vh",width:"100vw"}} >
           <Switch>
-            
+            <Redirect from='/' exact to='/home/viewTable'/>
             <Route path="/home/*">
             <div className="router">
             <YearChart/>
@@ -33,7 +34,7 @@ class App extends React.Component{
             <Route path='/home/new_record' component={NewRecord}></Route>
             </div>
             </Route>
-            
+            <Route path='/share' component={Share}/>
            
             
             <Route component={NotFound}></Route>
