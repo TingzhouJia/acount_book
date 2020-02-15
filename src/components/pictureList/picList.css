@@ -1,0 +1,21 @@
+.payment_table{
+   margin-top: 3vw;
+    padding-left: 3vw;
+    padding-right: 3vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.payment_table_choice{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.payment_p{
+    margin-right: 1vw;
+    font-size: medium;
+    font-weight: 600;
+}
+.payment_p::selection{
+    color: aquamarine;
+}

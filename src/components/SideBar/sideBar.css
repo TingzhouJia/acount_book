@@ -1,0 +1,25 @@
+.siderbar{
+    background-color: #fdd365 !important;
+  
+}
+.bar:hover {
+    color: black;
+    
+}
+.bar::selection {
+    background-color: #e5d8bf !important;
+}
+.bar::after{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    border-right: 3px solid black !important;
+}
+.siderbar span{
+    font-weight: 500 !important;
+
+}
+.siderbar::selection {
+    background-color: #e5d8bf !important;
+}

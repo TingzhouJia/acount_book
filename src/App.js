@@ -9,9 +9,10 @@ import Header from './components/Header/header'
 import NewRecord from './pages/new_record/new_record'
 import NotFound from './pages/NotFound/notFound'
 import PropTypes from 'prop-types'
-import Share from './pages/Share/Share'
+import LifeStyle from './pages/LifeStyle/LifeStyle'
 import YearChart from './pages/YearCharts/YearCharts'
 import './App.css'
+import SideBar from './components/SideBar/SideBar';
 const {Content}=Layout
 class App extends React.Component{
   static PropType={
@@ -22,24 +23,32 @@ class App extends React.Component{
   
     render(){ 
       return (
-        <Layout>
-        <Header />
-        <Content style={{height:"90vh",width:"100vw"}} >
+        <Layout style={{backgroundColor:"#ffeadb" ,height:"100vh"}}>
+      
+         <SideBar width={150} style={{
+            overflow: 'auto',
+            height: "100vh",
+            position: 'fixed',
+            
+            left: 0,
+          }}/>
+        <Layout style={{backgroundColor:"#ffeadb"}}>
+        <Header/>
+         
+        <Content >
           <Switch>
             <Redirect from='/' exact to='/home/viewTable'/>
-            <Route path="/home/*">
-            <div className="router">
-            <YearChart/>
+           
             <Route path='/home/viewTable' component={ViewTabs}></Route>
             <Route path='/home/new_record' component={NewRecord}></Route>
-            </div>
-            </Route>
-            <Route path='/share' component={Share}/>
+            
+            <Route path='/lifeStyle' component={LifeStyle}/>
            
             
             <Route component={NotFound}></Route>
           </Switch>
         </Content>
+        </Layout>
        
       </Layout>
         

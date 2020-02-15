@@ -1,12 +1,19 @@
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import React from 'react'
 import {Link,Redirect,withRouter} from 'react-router-dom'
+import {signIn} from '../../redux/actions/User_actions'
+import App from '../../App'
+import {connect} from 'react-redux'
+import './login.css'
 class Login extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
-        this.props.history.push('/home/*')
+        
+     
+       this.props.signIn(values.username,values.password)
+      
       }
       else{
           
@@ -16,8 +23,13 @@ class Login extends React.Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
+    if(this.props.auth){
+      return <Redirect to='/home/*'/>
+    }
     return (
-      <Form onSubmit={this.handleSubmit} className="login-form">
+      <div className="back">
+        <h1 className="login_title">Shark Finance</h1>
+        <Form onSubmit={this.handleSubmit} className="login-form">
         <Form.Item>
           {getFieldDecorator('username', {
             rules: [{ required: true, message: 'Please input your username!' }],
@@ -50,10 +62,17 @@ class Login extends React.Component {
           <Button type="primary" htmlType="submit" className="login-form-button">
             Log in
           </Button>
-          Or <Link to='/signUp'><a href="">register now!</a></Link>
+          Or <Link to='/SignUp'><a href="">register now!</a></Link>
         </Form.Item>
       </Form>
+      </div>
     );
   }
 }
-export default withRouter(Form)
+const LoginForm = Form.create({ name: 'normal_login' })(Login);
+const mapStateToProps=state=>{
+  return{
+    auth:state.User.isAuthenticated
+  }
+}
+export default connect(mapStateToProps,{signIn})(withRouter(LoginForm))

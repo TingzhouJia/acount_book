@@ -1,4 +1,138 @@
-.viewTab{
-    height:90vh;
-    width: 50vw;
+.viewTab {
+    background-color: #fbfbfb;
+    margin-top: 10vw;
+   display: flex;
+   justify-content: center;
+   flex-direction: column;
+}
+.cards{
+    display: flex;
+    flex-direction: row;
+    background-color: #fbfbfb;
+    position: relative;
+}
+
+
+.card{
+    border-radius: 2rem;
+    width: 12vw;
+    margin-top: -6vw;
+    display: flex;
+    background-color: white;
+    flex-direction: column;
+    padding: 2vw;
+    justify-content: flex-start;
+    margin-left: 3vw;
+    height: 11vw;
+    box-shadow: 1px 1px #f0efef ;
+}
+.card_add {
+    border-radius: 2rem;
+    width: 5vw;
+    margin-top: -3vw;
+    position: absolute;
+    right: 2vw;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 2px 2px #f0efef ;
+   font-size: large;
+  
+    height: 5vw;
+}
+.card:hover{
+   transform: scale(1.1);
+    transition: 1s ;
+}
+.content{
+    display: flex;
+    font-weight: 600 ;
+    flex-direction: column;
+    padding-top: 2vw;
+}
+.card_badge{
+    margin-top: -2.5vw;
+    width: fit-content;
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+.content_title{
+    font-size: large;
+}
+/* balance bar */
+.balance_bar{
+    width: 80%;
+    height: 6vw;
+    border: 1px solid #4d4646;
+    margin-top: 3vw;
+    border-radius: 2rem;
+    padding: 1vw;
+    position: relative;
+   margin-left: 10vw;
+   display: flex;
+   flex-direction: row;
+   justify-content: flex-start;
+
+}
+.balance{
+    display: flex;
+    flex: 2;
+    margin-left: 1vw;
+    flex-direction: column;
+    border-right: 1px solid #4d4646;
+}
+.balance_title{
+    background-color: #fbfbfb;
+    padding-left: 5px;
+    padding-right: 5px;
+    color: rgba(134, 131, 131, 0.933);
+    position: absolute;
+   top:-10px;
+}
+.balance_content{
+    display: flex;
+    flex-direction: column;
+}
+.deposit {
+   display: flex;
+   flex: 4;
+   flex-direction: column;
+   margin-left: 2vw;
+   
+}
+.deposit_title {
+    background-color: #fbfbfb;
+    padding-left: 5px;
+    padding-right: 5px;
+    color: rgba(134, 131, 131, 0.933);
+    position: absolute;
+   top:-10px;
+}
+.desposit_content{
+    margin-top: 0.5vw;
+    font-size: larger;
+    font-weight: 600;
+}
+.balance_buttons{
+   
+ 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 2;
+}
+.bal_button{
+    background-color: #fdd365;
+    color: black;
+    font-size: medium;
+    border: none;
+    border-radius: 0.2rem;
+    width: 7vw;
+    height: 3vw;
+    margin-right: 1vw;
+    outline: none;
+}
+.bal_button:active {
+    color: #fbfbfb;
 }

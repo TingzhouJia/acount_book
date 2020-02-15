@@ -4,25 +4,9 @@ import {edit_info,DELETE_INFO,DELETE_INCOME,DELETE_OUTGOINGS,changeIncome,change
 import PropTypes from 'prop-types'
 import {useDispatch} from 'react-redux'
 import {Icons} from '../../iconRes/icons'
-// const items=[
-//     {id:1,Description:' take trip in Ottawa',
-//     price:2000,date:'2018-09-18',tags:['travel','outcome']},
-//     {id:2,Description:' take trip in Toronto',
-//     price:4000,date:'2018-09-18',tags:['travel','outcome']},
-//     {id:3,Description:' kkkkkk',
-//     price:2000,date:'2018-09-18',tags:['travel','outcome']}
-//   ]
+import './picList.css'
 const PicList=(props)=>{
-    // state={
-    //     items:[
-    //     {id:1,icon:'icon-lvxing',Description:' take trip in Ottawa',price:2000,date:'2018-09-18',tags:['travel','outcome']},
-    //     {id:2,icon:"icon-chifan",Description:' take trip in Toronto',
-    //     price:4000,date:'2018-09-18',tags:['travel','outcome']},
-    //     {id:3,icon:"icon-riyong",Description:' kkkkkk',
-    //     price:2000,date:'2018-09-18',tags:['travel','outcome']}
-      
-    // ]
-    // }
+
     const dispatch=useDispatch()
     const onDeleteItem=(id)=>{
        
@@ -97,7 +81,15 @@ const PicList=(props)=>{
       ];
 
     return (  
-          <Table dataSource={items} columns={columns} rowKey="id" style={{width:"50vw"}}/>
+         <div className='payment_table'>
+           <div className="payment_table_choice">
+              <h1 style={{fontWeight:"800",marginRight:"2vw",fontSize:"2rem",paddingLeft:"1vw"}}>PAYMENTS</h1>
+              <p className='payment_p'>All</p>
+              <p className='payment_p'>Fixed</p>
+
+           </div>
+            <Table className="payment_content" dataSource={items} columns={columns} rowKey="id" />
+         </div>
     )
         }
 

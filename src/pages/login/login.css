@@ -1,0 +1,17 @@
+.back{
+    background:#fdd365 !important;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.login_title{
+    margin-bottom: 2vw;
+}
+.login-form{
+    width: 30vw !important;
+    background: #f7c5a8;
+    padding: 5vw;
+}
