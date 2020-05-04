@@ -13,7 +13,7 @@ import LifeStyle from './pages/LifeStyle/LifeStyle'
 import YearChart from './pages/YearCharts/YearCharts'
 import './App.css'
 import SideBar from './components/SideBar/SideBar';
-const {Content}=Layout
+const {Content,Footer}=Layout
 class App extends React.Component{
   static PropType={
       changeIncome:PropTypes.number.isRequired,
@@ -29,27 +29,29 @@ class App extends React.Component{
             overflow: 'auto',
             height: "100vh",
             position: 'fixed',
-            
+
             left: 0,
           }}/>
-        <Layout style={{backgroundColor:"#ffeadb"}}>
+        <Layout style={{backgroundColor:"#ffeadb",height:"100vh"}}>
         <Header/>
          
         <Content >
+         
           <Switch>
-            <Redirect from='/' exact to='/home/viewTable'/>
+            
            
             <Route path='/home/viewTable' component={ViewTabs}></Route>
-            <Route path='/home/new_record' component={NewRecord}></Route>
-            
-            <Route path='/lifeStyle' component={LifeStyle}/>
+            <Route path='/new_record' component={NewRecord}></Route>
+            <Route></Route>
+            <Route path='/lifestyle' component={LifeStyle}/>
            
             
             <Route component={NotFound}></Route>
           </Switch>
         </Content>
+      
         </Layout>
-       
+      
       </Layout>
         
       )

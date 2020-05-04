@@ -1,11 +1,13 @@
 .viewTab {
     background-color: #fbfbfb;
     margin-top: 10vw;
+    
    display: flex;
    justify-content: center;
    flex-direction: column;
 }
 .cards{
+   
     display: flex;
     flex-direction: row;
     background-color: #fbfbfb;

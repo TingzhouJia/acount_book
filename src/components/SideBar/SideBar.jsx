@@ -23,19 +23,21 @@ export default function SideBar() {
            <Menu.Item key="1" className="bar">
            <Link to="/home/viewTable">
            <Icon type="edit" />
-            <span>NEW PAYMENT</span>
+            <span>MY PAYMENT</span>
             </Link>
           </Menu.Item>
           <Menu.Item key="2" className="bar">
-              <Link to="/home/new_record">
-              <Icon type="pie-chart" />
-                <span>STATISTICS</span>
+              <Link to="/new_record">
+              <Icon type="account-book" />
+                <span>NEW PAYMENT</span>
               </Link>
            
           </Menu.Item>
           <Menu.Item key="3" className="bar">
-          <Icon type="account-book" />
-            <span>MY PAYMENTS</span>
+          <Link to="/lifestyle">
+          <Icon type="pie-chart" />
+            <span>STATISTICS</span>
+          </Link>
           </Menu.Item>
           <Menu.Item key="4" className="bar">
           <Icon type="notification" />

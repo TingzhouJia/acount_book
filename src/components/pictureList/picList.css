@@ -3,6 +3,7 @@
     padding-left: 3vw;
     padding-right: 3vw;
     display: flex;
+    height: 100%;
     flex-direction: column;
     justify-content: center;
 }
@@ -12,10 +13,66 @@
     align-items: center;
 }
 .payment_p{
-    margin-right: 1vw;
+   
     font-size: medium;
+   
+    margin-right: 2vw;
     font-weight: 600;
+}
+.payment_p:hover{
+    cursor: pointer;
+}
+
+.choice_right{
+    display: flex;
+    flex: 3;
+    align-items: center;
+    justify-content: flex-end;
+    font-weight: 600;
+}
+.choice_right:hover{
+    cursor: pointer;
 }
 .payment_p::selection{
     color: aquamarine;
+}
+.paymenta_table_border{
+    border: 1px solid black;
+    border-radius: 1rem;
+    box-shadow: 2px 2px #eeeeee ;
+}
+.payment_content_filter{
+    display: flex;
+    padding: 2vw;
+    justify-content: flex-start;
+    align-items: center;
+}
+.payment_option{
+    margin-right: 2vw;
+  
+    font-weight: 600 !important;
+}
+.payment_select{
+    
+    border: none !important;
+    outline: none !important;
+    background-color: white;
+}
+.payment_search{
+    display: flex;
+    margin-left: 30vw;
+    width: 20vw;
+    justify-content: flex-end;
+}
+.payment_option_span{
+    margin-right: 1vw;
+}
+.payment_content tr th {
+    padding: 1vw;
+    font-weight: 600 !important;
+    color: grey !important;
+   
+}
+.payment_content td{
+    font-weight: 600;
 }

@@ -57,9 +57,9 @@ const ViewTabs =()=>{
              <Icon type="folder-add" style={{fontSize:"2vw"}}/>
            </div>
           </div>
-            <BalanceBar/>
-          <PicList Infos={info}/>
-         
+          <BalanceBar/>
+         <div > <PicList Infos={info}/></div>
+        
        
         </div>
         

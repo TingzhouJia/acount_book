@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from 'react'
+import React from 'react'
 import Login from './pages/login/login'
 import SignUp from './pages/SignUp/SignUp'
 import Protector from './components/Protector'
@@ -13,7 +13,7 @@ export const Admin =()=> {
             <Route path='/Login' component={Login}></Route>
             {/* <Protector path='/' isAuthenticated={isAuthenticated} component={App}/>
             */}
-            <Route path="/home/viewtable" component={App}/>
+            <Route path="/" component={App}/>
             <Route path='/SignUp' component={SignUp}/>
         </Switch>
         )

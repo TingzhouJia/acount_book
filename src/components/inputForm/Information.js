@@ -65,9 +65,6 @@ const Information=()=>{
         history.push('/home/viewTable')
     }
     const set=useCallback((key)=>{
-      // const {tags}=this.state
-      // tags.push(key)
-      // this.setState({tags})
     
       innerdispatch({type:'type',data:key})
       setChange(true)
@@ -76,73 +73,55 @@ const Information=()=>{
     
     const getType=useCallback((event)=>{
       const type=event.target.value
-      // this.setState({icon:type})
-      // const {tags}=this.state
-      // tags.push(type)
-      // this.setState({tags})
+     
      innerdispatch({type:'icon',data:type})   
   },[state.icon])
    
         
         return (
-        
-    <Form layout="inline" onSubmit={handleSubmit} className="info_form">
-    <Tabs defaultActiveKey="2" onChange={set} >
-    <TabPane
-      tab={
-        <span>
-          Outgoings
-        </span>
-      }
-      key="Outgoings"
-      
-      
-    >
-    <Radio.Group onChange={getType} >
-        {outgoingList.map((item,index)=>{
-                return <Radio key={index} value={item.title}><Icons type={item.icon} style={{ fontSize: '30px', color: 'black' }}/>{item.title}</Radio>
-                })}
-      </Radio.Group>
-    </TabPane>
-    <TabPane
-      tab={
-        <span>
-          Incomes
-        </span>
-      }
-      key="Incomes"
-    >
-      <Radio.Group onChange={getType} defaultValue="a">
-        {incomeList.map((item,index)=>{
-                
-                return <Radio key={index} value={item.title} style={{marginLeft:"10px"}}><Icons type={item.icon} style={{ fontSize: '30px', color: 'black' }}/>{item.title}</Radio>
+          <div className="normal_info">
             
-                })}
-      </Radio.Group>
-    </TabPane>
-  </Tabs>
-      <Form.Item label="Description">
-        <Input  onChange={getInfo} value={change?clean:state.Description} />
-      </Form.Item>
-      <Form.Item label="Price">
-      
-          <Input
-            prefix="$" suffix="CAD"
-            type="text"
-            value={change?clean:state.price}
-            onChange={handleNumberChange}
-            style={{ width: '10vw', marginRight: '3%',}}
-          />
-        </Form.Item>
-        <Form.Item label="DatePicker">
-         <DatePicker onChange={getDate}/>
-        </Form.Item>
+            <Form layout="inline" onSubmit={handleSubmit} className="info_form">
+            <h1>NORMAL RECORD</h1>
+   <Form.Item label="Description">
+     <Input  onChange={getInfo} value={change?clean:state.Description} />
+   </Form.Item>
+   <Form.Item label="Price">
+   
+       <Input
+         prefix="$" suffix="CAD"
+         type="text"
+         value={change?clean:state.price}
+         onChange={handleNumberChange}
         
-        <Button type="primary" htmlType="submit">
-            Submit
-        </Button>
-        
-    </Form>
+       />
+     </Form.Item>
+     <Form.Item label="DatePicker">
+      <DatePicker onChange={getDate}/>
+     </Form.Item>
+     
+     <Button type="primary" htmlType="submit">
+         Submit
+     </Button>
+     
+ </Form>
+ 
+
+     <div className="normal_choice">
+     {outgoingList.map((item,index)=>{
+              return <div key={index} value={item.title}><Icons type={item.icon} style={{ fontSize: '30px', color: 'black' }}/>{item.title}</div>
+              })}
+   
+ 
+      {incomeList.map((item,index)=>{
+              
+              return <div key={index} value={item.title} style={{marginLeft:"10px"}}><Icons type={item.icon} style={{ fontSize: '30px', color: 'black' }}/>{item.title}</div>
+          
+              })}
+     </div>
+  
+          </div>
+          
         )
     
 }
