@@ -29,9 +29,7 @@ const Headers=(props)=>{
           </Breadcrumb>
           
            <div className="header_icon">
-           <Icon type="search" className="each_icon" />
-           <Icon type="mail" className="each_icon"/>
-           <Icon type="alert" className="each_icon"/>
+       
             <Avatar className="avatar"></Avatar>
            </div>
           </div>

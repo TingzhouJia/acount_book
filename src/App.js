@@ -38,8 +38,7 @@ class App extends React.Component{
         <Content >
          
           <Switch>
-            
-           
+              
             <Route path='/home/viewTable' component={ViewTabs}></Route>
             <Route path='/new_record' component={NewRecord}></Route>
             <Route></Route>

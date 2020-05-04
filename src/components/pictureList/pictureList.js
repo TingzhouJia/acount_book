@@ -1,5 +1,5 @@
 import React from 'react'
-import { Table,Select,Divider, Icon, Input,Button,Tag} from 'antd';
+import { Table,Select,Divider, Input,Button,Tag} from 'antd';
 import {edit_info,DELETE_INFO,DELETE_INCOME,DELETE_OUTGOINGS,changeIncome,changeOutgoings} from '../../redux/actions/actions_type'
 import PropTypes from 'prop-types'
 import {useDispatch} from 'react-redux'
@@ -121,12 +121,18 @@ const PicList=(props)=>{
               <span className='payment_p'>Income</span>
               <span className='payment_p'>Cost</span>
              
-              <span className="choice_right"><Icon type="line-chart" style={{paddingRight:"1vw"}}/> Analytics <Icon type="right" style={{paddingRight:"1vw",paddingLeft:"1vw"}} /></span>
+              <span className="choice_right">
+                {/* <Icon type="line-chart" style={{paddingRight:"1vw"}}/> */}
+                 Analytics 
+              {/* <Icon type="right" style={{paddingRight:"1vw",paddingLeft:"1vw"}} /> */}
+              </span>
            </div>
            <div className="paymenta_table_border">
              <div className="payment_content_filter">
                <div className="payment_option"> 
-               <span className="payment_option_span"><Icon type="calendar" />DATE</span>
+               <span className="payment_option_span">
+                 {/* <Icon type="calendar" /> */}
+                 DATE</span>
              <Select defaultValue="LAST WEEK" className="payment_select" onChange={()=>{}}>
                   <Option value="TWO_WEEK">RECENT 2 WEEKS</Option>
                   <Option value="MONTH">LAST MONTH</Option>
@@ -136,7 +142,9 @@ const PicList=(props)=>{
          </Select>
                </div>
           <div className="payment_option">
-          <span className="payment_option_span"><Icon type="tag" />TYPE</span>
+          <span className="payment_option_span">
+            {/* <Icon type="tag" /> */}
+            TYPE</span>
          <Select defaultValue="LAST WEEK" className="payment_select" onChange={()=>{}}>
                   <Option value="TWO_WEEK">RECENT 2 WEEKS</Option>
                   <Option value="MONTH">LAST MONTH</Option>

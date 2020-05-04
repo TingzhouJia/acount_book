@@ -4,7 +4,7 @@ import 'antd/dist/antd.css'
 import {Admin} from './admin';
 import {Provider} from 'react-redux'
 
-import { BrowserRouter,Route,Switch } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import store from './redux/store'
 const Root=()=>{
     return (<Provider store={store}>

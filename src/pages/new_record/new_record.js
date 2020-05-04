@@ -14,7 +14,7 @@ const renderTabs = title => {
       <span style={{ textAlign: "center", fontWeight: 700, fontSize: "1rem" }}>
         24
       </span>
-      <Icon />
+   
     </div>
   );
 };

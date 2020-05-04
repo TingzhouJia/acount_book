@@ -1,8 +1,8 @@
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button, Checkbox } from 'antd';
 import React from 'react'
 import {Link,Redirect,withRouter} from 'react-router-dom'
 import {signIn} from '../../redux/actions/User_actions'
-import App from '../../App'
+
 import {connect} from 'react-redux'
 import './login.css'
 class Login extends React.Component {
@@ -35,7 +35,7 @@ class Login extends React.Component {
             rules: [{ required: true, message: 'Please input your username!' }],
           })(
             <Input
-              prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+              
               placeholder="Username"
             />,
           )}
@@ -45,7 +45,7 @@ class Login extends React.Component {
             rules: [{ required: true, message: 'Please input your Password!' }],
           })(
             <Input
-              prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+             
               type="password"
               placeholder="Password"
             />,
@@ -69,10 +69,10 @@ class Login extends React.Component {
     );
   }
 }
-const LoginForm = Form.create({ name: 'normal_login' })(Login);
+
 const mapStateToProps=state=>{
   return{
     auth:state.User.isAuthenticated
   }
 }
-export default connect(mapStateToProps,{signIn})(withRouter(LoginForm))
+export default connect(mapStateToProps,{signIn})(withRouter(Login))

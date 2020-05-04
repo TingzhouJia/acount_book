@@ -1,8 +1,10 @@
 import React ,{useState}from 'react'
-import {Layout,Menu,Button,Icon} from 'antd'
+import {Layout,Menu,Button} from 'antd'
 import './sideBar.css'
 import {Link} from 'react-router-dom'
+import {EditOutlined} from '@ant-design/icons'
 const {Sider}=Layout
+
 
 export default function SideBar() {
     const [collapsed,setCollapsed]=useState(false)
@@ -22,31 +24,31 @@ export default function SideBar() {
         >
            <Menu.Item key="1" className="bar">
            <Link to="/home/viewTable">
-           <Icon type="edit" />
+           <EditOutlined />
             <span>MY PAYMENT</span>
             </Link>
           </Menu.Item>
           <Menu.Item key="2" className="bar">
               <Link to="/new_record">
-              <Icon type="account-book" />
+            
                 <span>NEW PAYMENT</span>
               </Link>
            
           </Menu.Item>
           <Menu.Item key="3" className="bar">
           <Link to="/lifestyle">
-          <Icon type="pie-chart" />
+          <EditOutlined />
             <span>STATISTICS</span>
           </Link>
           </Menu.Item>
           <Menu.Item key="4" className="bar">
-          <Icon type="notification" />
+          <EditOutlined />
             <span>NOTIFICATION</span>
           </Menu.Item>
 
           </Menu>
           <Button  onClick={()=>setCollapsed(!collapsed)} style={{ marginBottom: 16 }}>
-          <Icon type={collapsed ? 'menu-unfold' : 'menu-fold'} />
+          <EditOutlined />
         </Button>
         </Sider>
     )

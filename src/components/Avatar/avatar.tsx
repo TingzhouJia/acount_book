@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react'
-import { Avatar, Icon,Dropdown,Menu } from 'antd';
+import { Avatar,Dropdown,Menu } from 'antd';
 import {Link} from 'react-router-dom'
-function AvatarPage(){
+const AvatarPage: React.FC=()=>{
   
     const content=(<Menu>
         <Menu.Item key="0">
