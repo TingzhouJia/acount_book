@@ -7,16 +7,12 @@ const {Sider}=Layout
 
 
 export const SideBar: React.FC<any|React.HTMLAttributes<HTMLBaseElement>>=()=> {
-    const [collapsed,setCollapsed]=useState(false)
     return (
-        <Sider collapsible 
-        collapsed={collapsed}
-        trigger={null}
-       style={{borderTopRightRadius:50,backgroundColor:"#fdd365"}}
+        <Sider 
+        theme='light'
        >
-       <div style={{height:100}}>
-
-       </div>
+       <div>
+       <div style={{height:100}}></div>
         <Menu
           defaultSelectedKeys={['1']}
           mode="inline"
@@ -30,7 +26,6 @@ export const SideBar: React.FC<any|React.HTMLAttributes<HTMLBaseElement>>=()=> {
           </Menu.Item>
           <Menu.Item key="2" className="bar">
               <Link to="/new_record">
-            
                 <span>NEW PAYMENT</span>
               </Link>
            
@@ -45,11 +40,13 @@ export const SideBar: React.FC<any|React.HTMLAttributes<HTMLBaseElement>>=()=> {
           <EditOutlined />
             <span>NOTIFICATION</span>
           </Menu.Item>
-
           </Menu>
-          <Button  onClick={()=>setCollapsed(!collapsed)} style={{ marginBottom: 16 }}>
-          <EditOutlined />
-        </Button>
+       </div>
+        <div style={{position:'absolute',bottom:0}}>
+         
+
+        </div>
+      
         </Sider>
     )
 }

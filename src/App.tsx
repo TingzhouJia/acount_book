@@ -18,8 +18,7 @@ export const App:React.FC =()=>{
 
       return (
         <Layout style={{backgroundColor:"#ffeadb" ,height:"100vh"}}>
-  
-         <SideBar width={150} style={{
+         <SideBar width={120} style={{
             overflow: 'auto',
             height: "100vh",
             position: 'fixed',

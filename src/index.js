@@ -5,7 +5,7 @@ import {Admin} from './admin.tsx'
 import {Provider} from 'react-redux'
 
 import { BrowserRouter } from 'react-router-dom';
-import store from './redux/store'
+import store from 'redux/store'
 const Root=()=>{
     return (<Provider store={store}>
         <BrowserRouter > 
