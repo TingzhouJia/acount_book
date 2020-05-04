@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css'
-import {Admin} from './admin';
+import {Admin} from './admin.tsx'
 import {Provider} from 'react-redux'
 
 import { BrowserRouter } from 'react-router-dom';

@@ -1,15 +1,14 @@
 import React from 'react'
-
 import {useSelector} from 'react-redux'
-import {Link,useLocation} from 'react-router-dom'
+import {useLocation} from 'react-router-dom'
 import {Layout,Breadcrumb,Input} from 'antd'
 import {} from '@ant-design/icons'
 import Avatar from '../Avatar/avatar'
 import './header.css'
 const {Search}=Input
 const {Header}=Layout
-const Headers=(props)=>{
-  const {outgoing,income,budget}=useSelector(state=>state.Finance)
+const Headers:React.FC=()=>{
+
   let location=useLocation()
   let site=location.pathname.split('/')
   return(

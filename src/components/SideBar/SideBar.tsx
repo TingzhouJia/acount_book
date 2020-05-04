@@ -6,7 +6,7 @@ import {EditOutlined} from '@ant-design/icons'
 const {Sider}=Layout
 
 
-export default function SideBar() {
+export const SideBar: React.FC<any|React.HTMLAttributes<HTMLBaseElement>>=()=> {
     const [collapsed,setCollapsed]=useState(false)
     return (
         <Sider collapsible 
