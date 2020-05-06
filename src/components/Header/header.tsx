@@ -2,7 +2,7 @@ import React from 'react'
 import {useSelector} from 'react-redux'
 import {useLocation} from 'react-router-dom'
 import {Layout,Breadcrumb,Input} from 'antd'
-import {} from '@ant-design/icons'
+import { BellOutlined } from '@ant-design/icons'
 import Avatar from '../Avatar/avatar'
 import './header.css'
 const {Search}=Input
@@ -12,9 +12,9 @@ const Headers:React.FC=()=>{
   let location=useLocation()
   let site=location.pathname.split('/')
   return(
-      <Header style={{borderBottomLeftRadius:40,backgroundColor:"#fdd365",marginLeft:"5vw",height:"5vw"}}>
+      <Header style={{backgroundColor:"#eceaf1",height:"5vw"}}>
         <div className="Header_fold">
-        <span className="header_title">Shark Finance</span>
+        
           <Breadcrumb className="sites">
           {
             site.map(each=>{
@@ -28,7 +28,7 @@ const Headers:React.FC=()=>{
           </Breadcrumb>
           
            <div className="header_icon">
-       
+           <BellOutlined style={{fontSize:"20px"}} />
             <Avatar className="avatar"></Avatar>
            </div>
           </div>

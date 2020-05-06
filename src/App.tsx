@@ -1,5 +1,5 @@
 import React from 'react';
-import {Switch,Route} from 'react-router-dom'
+import {Switch,Route, Redirect} from 'react-router-dom'
 import "antd/dist/antd.css";
 import {Layout} from 'antd'
 import 'antd/dist/antd.css'
@@ -30,9 +30,9 @@ export const App:React.FC =()=>{
           <Switch>       
             <Route path='/home/viewTable' component={ViewTabs}></Route>
             <Route path='/new_record' component={NewRecord}></Route>
-            <Route></Route>
             <Route path='/lifestyle' component={LifeStyle}/>      
             <Route component={NotFound}></Route>
+            <Redirect from='/' to='/home/viewTable' />
           </Switch>
         </Content>
       

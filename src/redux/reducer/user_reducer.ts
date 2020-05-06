@@ -86,3 +86,4 @@ export const signUp=(email:string,password:string):AppThunk=>async(dispatch)=>{
       console.log(err)
   }
 }
+export default userSlice.reducer

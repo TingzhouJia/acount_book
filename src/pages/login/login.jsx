@@ -1,7 +1,7 @@
 import { Form, Input, Button, Checkbox } from 'antd';
 import React from 'react'
 import {Link,Redirect,withRouter} from 'react-router-dom'
-import {signIn} from '../../redux/actions/User_actions'
+import {signIn} from '../../redux/reducer/user_reducer'
 
 import {connect} from 'react-redux'
 import './login.css'
