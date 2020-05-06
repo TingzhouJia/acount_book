@@ -1,17 +1,15 @@
 
 enum Permissions {
-    AddCard = 'read:patients',
-    WritePatients = 'write:patients',
-    ReadAppointments = 'read:appointments',
-    WriteAppointments = 'write:appointments',
-    DeleteAppointment = 'delete:appointment',
-    AddAllergy = 'write:allergy',
-    AddDiagnosis = 'write:diagnosis',
-    RequestLab = 'write:labs',
-    CancelLab = 'cancel:lab',
-    CompleteLab = 'complete:lab',
-    ViewLab = 'read:lab',
-    ViewLabs = 'read:labs',
+    AddCard = 'read:card',
+    RemoveCard='delete:card',
+    RemoveAllCard='delete:AllCard',
+    Addutilities = 'write:utilties',
+    RemoveUtilities='delete:utilities',
+    AddPrivateStatement='write:PrivateStatement',
+    ViewPrivateStatement='read:PrivateStatement',
+    RemovePrivateStatement='delete:PrivateStatement',
+    ViewAll = 'read:all',
+    RemoveAll = 'delete:all',
   }
   
   export default Permissions

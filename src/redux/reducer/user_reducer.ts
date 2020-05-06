@@ -9,6 +9,8 @@ import {
     
   } from '../actions/actions_type';
   import {createSlice,PayloadAction} from '@reduxjs/toolkit'
+  import firebase from '../../firebase'
+  import {AppThunk} from '../store'
 import User from '../model/user'
 interface userType  {
     user:User|null,
@@ -29,7 +31,8 @@ interface userType  {
     reducers:{
         fetchUserStart:startLoading,
         fetchUserSuccess(state,{payload}:PayloadAction<userType>){
-
+              state.loading=false;
+              state.isAuthenticated=true;
         }
     }
   })
@@ -41,27 +44,45 @@ export const {
   fetchUserStart,
   fetchUserSuccess
 }=userSlice.actions
-  // export default function(state = initialState, action) {
-  //   switch(action.type) {
-  //     case AUTH_ERROR:
-  //     case LOGIN_FAIL:
-  //       return {
-  //         ...state,
-  //         authError: 'Authentication error.'
-  //       }
-      
-  //     case LOGIN_SUCCESS:
-  //       return {
-  //         ...state,
+
+export const signIn = (email:string,password:string):AppThunk => async(dispatch)=> {
+  try{
+     dispatch(fetchUserStart())
+    firebase.auth().signInWithEmailAndPassword(email,password).then(
+      (user)=>{
+       
+          dispatch({type: LOGIN_SUCCESS,payload:user})
+                
+      }).catch(
+            (err)=>  {
+               
+                dispatch({type:LOGIN_FAIL,payload:err})
+            }
+          )
+  }
+  catch(err){
+      console.log(err)
+    dispatch({type:LOGIN_FAIL,payload:err})
+  }
+
+  
+}
+export const signUp=(email:string,password:string):AppThunk=>async(dispatch)=>{
+  try{
+      firebase.auth().createUserWithEmailAndPassword(email, password)
+      .then(user=>{
+          dispatch({type:LOGIN_SUCCESS,payload:user})
+         
+      })
+      .catch(function(error) {
+          // Handle Errors here.
           
-  //         isLogined:true,
-  //         isAuthenticated:true
-  //       }
-  //     case USER_LOADING:
-  //       return {...state,loading:true}
-      
-      
-  //     default:
-  //       return state;
-  //   }
-  // }
+         dispatch({type:LOGIN_FAIL,payload:errorMessage})
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          // ...
+        });
+  }catch(err){
+      console.log(err)
+  }
+}
