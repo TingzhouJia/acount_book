@@ -1,8 +1,6 @@
 import Base from "./base";
 
 export default interface Card extends Base{
-    
-    type:string,
     start_balance?:number,
     subtype:string,
     name:string,

@@ -4,5 +4,5 @@ export default interface Base{
     updatedAt?:string,
     authorId:string,
     private:boolean,
-    
+    type:string
 }
