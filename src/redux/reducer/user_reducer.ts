@@ -26,7 +26,7 @@ interface userType  {
   }
 
   const userSlice=createSlice({
-    name:'userData',
+    name:'user',
     initialState,
     reducers:{
         fetchUserStart:startLoading,
@@ -36,7 +36,7 @@ interface userType  {
         }
     }
   })
-function startLoading(state:userType){
+ function startLoading(state:userType){
   state.loading=true;
 }
 //export reducer

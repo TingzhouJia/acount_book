@@ -1,9 +1,14 @@
-import Balance from "./balance";
+import Balance, { BalanceEach } from "./balance";
 import Owner from "./owner";
+import Item from "./item";
 
 export default interface Account{
+    accounts:AccountEach[],
+    item:Item
+}
+export  interface AccountEach{
     account_id:string,
-    balance:Balance,
+    balance:BalanceEach,
     mask:string,
     name:string,
     official_name:string,
