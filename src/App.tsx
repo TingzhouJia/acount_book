@@ -13,18 +13,18 @@ import YearChart from './pages/YearCharts/YearCharts'
 import './App.css'
 import { SideBar } from 'components/SideBar/SideBar';
 
-const {Content}=Layout
+const {Content,Footer}=Layout
 export const App:React.FC =()=>{
 
       return (
-        <Layout style={{backgroundColor:"#ffeadb" ,height:"100vh"}}>
+        <Layout style={{backgroundColor:"#ffeadb" ,minHeight:"100vh"}}>
          <SideBar width={120} style={{
             overflow: 'auto',
             height: "100vh",
             position: 'fixed',
             left: 0,
           }}/>
-        <Layout style={{backgroundColor:"#ffeadb",height:"100vh"}}>
+        <Layout style={{backgroundColor:"#ffeadb",minHeight:"100vh"}}>
         <Header/>   
         <Content >
           <Switch>       
@@ -35,7 +35,7 @@ export const App:React.FC =()=>{
             <Redirect from='/' to='/home/viewTable' />
           </Switch>
         </Content>
-      
+        <Footer/>
         </Layout>
       
       </Layout>
