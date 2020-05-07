@@ -20,14 +20,19 @@ export interface TransactionEach {
     authorized_date: string | null,
     category: string[],
     category_id: string,
-    subtype: string,
     date: string,
     name: string,
     curriso_currency_code: string,
     payment_channel: string,
     payment_meta: PaymentMeta | null
     amount: number,
-    description: string
+    pending: boolean,
+    pending_transaction_id:null|string
+    unofficial_currency_code:string |null,
+    transaction_type:string,
+    transaction_id:string,
+    transaction_code:string|null,
+    location:null|MyLocation
 }
 
 export interface PaymentMeta {
@@ -39,4 +44,14 @@ export interface PaymentMeta {
     ppd_id: string | null,
     reason: string | null,
     reference_number: number | null
+}
+export interface MyLocation{
+    address: null|string,
+    city: null|string,
+    country: null|string,
+    lat: null|number,
+    lon: null|number,
+    postal_code: null|string,
+    region: null|string,
+    store_number: null|number
 }

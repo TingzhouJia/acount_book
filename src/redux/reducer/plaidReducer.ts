@@ -5,6 +5,8 @@ import Balance from 'redux/model/balance'
 import Account from 'redux/model/account'
 import Holding from 'redux/model/holding'
 import axios from 'axios'
+import { testRoot, Endpoint } from 'api/plaidAPI'
+import Identity from 'redux/model/identity'
 
 interface plaidType{
     transactionList:Transaction[]|null,
@@ -13,6 +15,7 @@ interface plaidType{
     totalBalance:number,
     HoldingList:Holding[]|null,
     plaidLoading:boolean,
+    IdentityList:Identity[]
     error:FetchError|null
     
 }
@@ -25,6 +28,7 @@ const initialState:plaidType={
     accountList:[],
     totalBalance:0,
     HoldingList:[],
+    IdentityList:[],
     plaidLoading:false,
     error:null
 }
@@ -46,8 +50,12 @@ const plaidSlice=createSlice({
             state.balanceList=payload,
             state.plaidLoading=false
         },
-        fetchHoldingList(state,{payload}:PayloadAction<Holding[]>){
+        fetchHoldingListSuccess(state,{payload}:PayloadAction<Holding[]>){
             state.HoldingList=payload,
+            state.plaidLoading=false
+        },
+        fetchIdentityListSuccess(state,{payload}:PayloadAction<Identity[]>){
+            state.IdentityList=payload,
             state.plaidLoading=false
         },
         fetchFailed(state,{payload}:PayloadAction<FetchError>){
@@ -61,7 +69,8 @@ const {
     fetchStart,
     fetchAccountListSuccess,
     fetchBalanceListSuccess,
-    fetchHoldingList,
+    fetchHoldingListSuccess,
+    fetchIdentityListSuccess,
     fetchTransitionListSuccess,
     fetchFailed
 }=plaidSlice.actions
@@ -71,8 +80,64 @@ function startLoading(state:plaidType){
   }
 
 
+export const fetchTransactionList=(limit:number=30):AppThunk=>async(dispatch)=>{
+    dispatch(fetchStart());
+  await  axios.get(`${testRoot+Endpoint.TransactionsPath}`,{params:{date:limit}}).then((res)=>{
+        if(res.data.error!=null){
+            dispatch(fetchFailed(res.data.error));
+        }else{
+            dispatch(fetchTransitionListSuccess(res.data.transactions))
+        }
+        
+    })
+}
+
 export const fetchAccountList=():AppThunk=>async(dispatch)=>{
-    dispatch(fetchStart())
+    dispatch(fetchStart());
+   await axios.get(`${testRoot+Endpoint.AccountsPath}`).then((res)=>{
+        if(res.data.error!=null){
+            dispatch(fetchFailed(res.data.error));
+        }else{
+            dispatch(fetchAccountListSuccess(res.data.accounts))
+        }
+        
+    })
+}
+
+export const fetchIdentityList=():AppThunk=>async(dispatch)=>{
+    dispatch(fetchStart());
+   await axios.get(`${testRoot+Endpoint.IdentityPath}`).then((res)=>{
+        if(res.data.error!=null){
+            dispatch(fetchFailed(res.data.error));
+        }else{
+            dispatch(fetchIdentityListSuccess(res.data.identity))
+        }
+        
+    })
+}
+
+export const fetchBalanceList=():AppThunk=>async(dispatch)=>{
+    dispatch(fetchStart());
+   await axios.get(`${testRoot+Endpoint.BalancePath}`).then((res)=>{
+        if(res.data.error!=null){
+            dispatch(fetchFailed(res.data.error));
+        }else{
+            dispatch(fetchBalanceListSuccess(res.data.balance))
+        }
+        
+    })
+}
+
+export const fetchHoldingList=():AppThunk=>async(dispatch)=>{
+    dispatch(fetchStart());
+   await axios.get(`${testRoot+Endpoint.HoldingsPath}`).then((res)=>{
+        if(res.data.error!=null){
+            dispatch(fetchFailed(res.data.error));
+        }else{
+            dispatch(fetchHoldingListSuccess(res.data.holdings))
+        }
+        
+    })
 }
 
 

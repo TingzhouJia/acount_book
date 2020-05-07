@@ -1,7 +1,7 @@
-import Account from "./account";
+import Account, { AccountEach } from "./account";
 import Item from "./item";
 
 export default interface Identity{
-    accounts:Account[]
+    accounts:AccountEach[]
     items:Item
 }
