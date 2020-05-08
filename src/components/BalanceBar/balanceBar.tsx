@@ -12,30 +12,37 @@ const BalanceBar:React.FC=()=>{
     const {plaidLoading,balanceList} =useSelector((state:RootState)=>state.plaid);
     const [balancesList,setBalanceLists]=useState<Balance|null>(null);
    const [totalBalacne, setTotalBalance] = useState<number|null>(0);
-   const Calbalance= useCallback(
-       () => {
+    const getTotal=useCallback((lists)=>{
         let num:number=0;
-           dispatch(fetchBalanceList());
-           balanceList?.accounts?.map((each:AccountEach)=>{
+        lists?.accounts?.map((each:AccountEach)=>{
             num+=each.balances.current;
            });
-        setTotalBalance(num);
-        setBalanceLists(balanceList);
-       },
-       [balanceList,balancesList],
-   )
+           
+           setTotalBalance(num)
+           console.log(num)
+    },[totalBalacne])
     useEffect(() => {
         
        // Calbalance();
-       dispatch(fetchBalanceList());
+        if(!balanceList){
+            dispatch(fetchBalanceList());
+            
+        }
+       
+      
+
+     
+
        setBalanceLists(balanceList);
+       getTotal(balanceList)
+       
         console.log(1)
-    }, [dispatch])
+    }, [dispatch,totalBalacne,balancesList,balanceList])
     return(
       <Suspense fallback={<Spin/>}>
-          <div className="balance_bar">
+        <div className="balance_bar">
         <div className="balanceTop">
-            <span className="balance_total">Total Balance</span>
+            <span className="balance_total">Total Balance:</span>
             <span className="balance_total_count">${totalBalacne}</span>
         </div>
         <BalanceBarChart data={balanceList?.accounts?balanceList?.accounts:[]}/>

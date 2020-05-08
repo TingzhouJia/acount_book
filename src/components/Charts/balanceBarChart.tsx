@@ -28,7 +28,7 @@ const BalanceBarChart=(props:Props)=> {
 // afterData.push({type:"Income",name:name1,value:current})
 // afterData.push({type:"Available",name:name1,value:each.balances.available})
         })
-        console.log(afterData);
+
         setDataSource(afterData);
 
     }
@@ -79,6 +79,7 @@ const BalanceBarChart=(props:Props)=> {
               type: "y"
             }}
           />
+          <Legend name='type' visible={true}/>
           <Geom
             type="interval"
             position="月份*月均降雨量"
@@ -86,7 +87,7 @@ const BalanceBarChart=(props:Props)=> {
             adjust={[
               {
                 type: "dodge",
-                marginRatio: 1 / 32
+                marginRatio: 1 / 16
               }
             ]}
           />
