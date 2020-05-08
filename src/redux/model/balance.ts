@@ -4,7 +4,7 @@ import Item from "./item";
 export default interface Balance {
     accounts: AccountEach[] | null,
     item: Item[]
-
+    request_id:string
 }
 export interface BalanceEach {
     available: number,

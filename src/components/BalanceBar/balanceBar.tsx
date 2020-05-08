@@ -1,30 +1,46 @@
-import React from 'react'
-import {Button} from 'antd'
+import React, { useEffect, Suspense, useState, useCallback } from 'react'
+import {Button, Spin} from 'antd'
 import './balanceBar.css'
+import BalanceBarChart from 'components/Charts/balanceBarChart'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchBalanceList } from 'redux/reducer/plaidReducer'
+import { RootState } from 'redux/store'
+import Balance from 'redux/model/balance'
+import { AccountEach } from 'redux/model/account'
 const BalanceBar:React.FC=()=>{
-
-
+    const dispatch=useDispatch()
+    const {plaidLoading,balanceList} =useSelector((state:RootState)=>state.plaid);
+    const [balancesList,setBalanceLists]=useState<Balance|null>(null);
+   const [totalBalacne, setTotalBalance] = useState<number|null>(0);
+   const Calbalance= useCallback(
+       () => {
+        let num:number=0;
+           dispatch(fetchBalanceList());
+           balanceList?.accounts?.map((each:AccountEach)=>{
+            num+=each.balances.current;
+           });
+        setTotalBalance(num);
+        setBalanceLists(balanceList);
+       },
+       [balanceList,balancesList],
+   )
+    useEffect(() => {
+        
+       // Calbalance();
+       dispatch(fetchBalanceList());
+       setBalanceLists(balanceList);
+        console.log(1)
+    }, [dispatch])
     return(
-      <div className="balance_bar">
+      <Suspense fallback={<Spin/>}>
+          <div className="balance_bar">
         <div className="balanceTop">
-        <div className="balance">
-          <span className="balance_title">BALANCE</span>
-          <div className="balance_content">
-            <span style={{fontWeight:700,fontSize:"larger"}}>$27,900.00</span>
-            <span style={{color:"#21bf73"}}>+386.00</span>
-          </div>
+            <span className="balance_total">Total Balance</span>
+            <span className="balance_total_count">${totalBalacne}</span>
         </div>
-        <div className="deposit">
-          <span className="deposit_title">DEPOSIT</span>
-          <span className="desposit_content">$1,231.00</span>
-        </div>
-        <div className="balance_buttons">
-            <Button type="primary">RESET</Button>
-            <Button type="primary" >ADD </Button>
-        </div>
-        </div>
-
+        <BalanceBarChart data={balanceList?.accounts?balanceList?.accounts:[]}/>
       </div>
+      </Suspense>
     )
   }
 

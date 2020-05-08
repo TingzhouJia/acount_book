@@ -8,7 +8,7 @@ export default interface Account{
 }
 export  interface AccountEach{
     account_id:string,
-    balance:BalanceEach,
+    balances:BalanceEach,
     mask:string,
     name:string,
     official_name:string,

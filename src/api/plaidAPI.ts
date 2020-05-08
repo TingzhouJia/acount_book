@@ -1,6 +1,6 @@
 
 
-export const testRoot="lcoalhost:8000"
+export const testRoot="http://localhost:8000"
 export enum Endpoint{
     TransactionsPath='/transactions',
     BalancePath='/balance',
