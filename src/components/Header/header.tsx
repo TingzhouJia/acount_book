@@ -8,11 +8,10 @@ import './header.css'
 const {Search}=Input
 const {Header}=Layout
 const Headers:React.FC=()=>{
-
   let location=useLocation()
   let site=location.pathname.split('/')
   return(
-      <Header style={{backgroundColor:"#eceaf1",height:"5vw"}}>
+      <Header style={{backgroundColor:"#eceaf1",height:"2vw"}}>
         <div className="Header_fold">
         
           <Breadcrumb className="sites">

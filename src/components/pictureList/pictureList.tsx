@@ -1,10 +1,12 @@
-import React from 'react'
-import { Table,Select,Divider, Input,Button,Tag} from 'antd';
-import {edit_info,DELETE_INFO,DELETE_INCOME,DELETE_OUTGOINGS,changeIncome,changeOutgoings} from '../../redux/actions/actions_type'
+import React, { useEffect } from 'react'
+import { Table,Select,Divider, Input,Button,Tag, Pagination} from 'antd';
+
 import PropTypes from 'prop-types'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import {Icons} from '../../iconRes/icons'
 import './picList.css'
+import { RootState } from 'redux/store';
+import { fetchTransactionList } from 'redux/reducer/plaidReducer';
 const {Option}=Select
 const rowSelection = {
   
@@ -31,46 +33,61 @@ const rowSelection = {
   
   ],
 };
-const PicList=(props)=>{
+
+
+const PicList:React.FC=()=>{
 
     const dispatch=useDispatch()
-    const onDeleteItem=(id)=>{
+    const {plaidLoading,transactionList}=useSelector((state:RootState)=>state.plaid)
+    useEffect(() => {
+      if(!transactionList){
+        dispatch(fetchTransactionList())
+      }
+      
+    }, [])
+    // const onDeleteItem=(id:number)=>{
        
-        const {price,tags}=props.Infos[id]
+    //     const {price,tags}=props.Infos[id]
         
-        if(tags.indexOf('Outgoings')!=-1){
-          dispatch({type:DELETE_OUTGOINGS,data:price})
-        }else{
-          dispatch({type:DELETE_INCOME,data:price})
-        }
-        dispatch({type:DELETE_INFO,data:id})
-    }
+    //     if(tags.indexOf('Outgoings')!=-1){
+    //       dispatch({type:DELETE_OUTGOINGS,data:price})
+    //     }else{
+    //       dispatch({type:DELETE_INCOME,data:price})
+    //     }
+    //     dispatch({type:DELETE_INFO,data:id})
+    // }
     
   
         
-      const items=props.Infos
+    //   const items=props.Infos
       const columns = [
-          {title:'Icon',
-            dataIndex:'icon',
-            key:'icon',
-            render:(icon)=>
-                 (<Icons type={'icon-'+icon} style={{ fontSize: '30px', color: 'black' }}/>)
+        //   {title:'Icon',
+        //     dataIndex:'icon',
+        //     key:'icon',
+        //     render:(icon)=>
+        //          (<Icons type={'icon-'+icon} style={{ fontSize: '30px', color: 'black' }}/>)
             
+        // },
+        // {
+        //   title:"transaction_id",
+        //   dataIndex:"transaction_id",
+        //   key:"id"
+        // },
+        {
+          title: 'Payment ',
+          dataIndex: 'name',
+          key: 'name',
+          width:"20%"
         },
         {
-          title:"ID",
-          dataIndex:"id",
-          key:"id"
-        },
-        {
-          title: 'Payment Details',
-          dataIndex: 'Description',
-          key: 'Description',
+          title: 'Payment Type ',
+          dataIndex: 'payment_channel',
+          key: 'payment_channel',
         },
         {
           title: 'Amount',
-          dataIndex: 'price',
-          key: 'price',
+          dataIndex: 'amount',
+          key: 'amount',
         },
         {
           title: 'Date',
@@ -79,9 +96,9 @@ const PicList=(props)=>{
         },
         {
             title: 'Tags',
-            key: 'tags',
-            dataIndex: 'tags',
-            render: tags => (
+            key: 'category',
+            dataIndex: 'category',
+            render: (tags:string[]) => (
               <span>
                 {tags.map(tag => {
                   let color = tag.length > 5 ? 'geekblue' : 'green';
@@ -100,12 +117,12 @@ const PicList=(props)=>{
           {
             title: 'Action',
             key: 'action',
-            render: (text, record,id) => (
+            render: (id:string) => (
               <span>
                 <Button icon='edit' ></Button>
                 <Divider type="vertical" />
-                <Button icon='delete' onClick={onDeleteItem.bind(this,id)}></Button>
-                {/*     用箭头函数和bind方法绑定传值是等价的 */}
+                <Button  >details</Button>
+              
               </span>
             )
           }
@@ -115,7 +132,7 @@ const PicList=(props)=>{
          <div className='payment_table'>
            <div className="payment_table_choice">
              
-              <span style={{fontWeight:"800",marginRight:"2vw",fontSize:"2rem",paddingLeft:"1vw"}}>PAYMENTS</span>
+              <span style={{fontWeight:800,marginRight:"2vw",fontSize:"2rem",paddingLeft:"1vw"}}>PAYMENTS</span>
               <span className='payment_p'>All</span>
               <span className='payment_p'>FixedCharge</span>
               <span className='payment_p'>Income</span>
@@ -155,7 +172,7 @@ const PicList=(props)=>{
           </div>
          <Input placeholder="Search" className="payment_search" style={{width:"20vw"}}/>
              </div>
-           <Table className="payment_content"  rowSelection={rowSelection} dataSource={[]} columns={columns} rowKey="id" pagination={false}/>
+           <Table className="payment_content"  rowSelection={rowSelection} dataSource={transactionList?.transactions} columns={columns} rowKey="id" />
            </div>
            
          </div>

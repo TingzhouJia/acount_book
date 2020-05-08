@@ -9,7 +9,7 @@ import { testRoot, Endpoint } from 'api/plaidAPI'
 import Identity from 'redux/model/identity'
 
 interface plaidType {
-    transactionList: Transaction[] | null,
+    transactionList: Transaction| null,
     balanceList: Balance | null,
     accountList: Account[] | null,
     totalBalance: number,
@@ -23,7 +23,7 @@ type FetchError = {
     error: string
 }
 const initialState: plaidType = {
-    transactionList: [],
+    transactionList: null,
     balanceList: null,
     accountList: [],
     totalBalance: 0,
@@ -38,7 +38,7 @@ const plaidSlice = createSlice({
     initialState,
     reducers: {
         fetchStart: startLoading,
-        fetchTransitionListSuccess(state, { payload }: PayloadAction<Transaction[]>) {
+        fetchTransitionListSuccess(state, { payload }: PayloadAction<Transaction>) {
             state.transactionList = payload;
             state.plaidLoading = false
         },
