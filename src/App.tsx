@@ -26,7 +26,7 @@ export const App:React.FC =()=>{
           }}/>
         <Layout style={{backgroundColor:"#ffeadb",minHeight:"100vh"}}>
         <Header/>   
-        <Content >
+        <Content style={{backgroundColor:"#f0f1f2"}} >
           <Switch>       
             <Route path='/home/viewTable' component={ViewTabs}></Route>
             <Route path='/new_record' component={NewRecord}></Route>

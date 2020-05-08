@@ -1,15 +1,18 @@
 .viewTab {
-    background-color: #fbfbfb;
+    background-color: #f0f1f2;
     
    display: flex;
    justify-content: space-between;
-   flex-direction: row;
+   flex-direction: column;
 }
 
-.rightTab{
-    width: 200px;
-    height: 100px;
-    background-color: red;
+.topTab{
+    flex: 2;
+   
 
+}
+.bottomTab{
+    flex: 4;
+   
 }
 /* balance bar */

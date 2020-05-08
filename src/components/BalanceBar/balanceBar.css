@@ -1,8 +1,5 @@
 .balanceTop{
-    height: 6vw;
-    
-   
-    
+    height: 3vw;   
     padding: 1vw;
     position: relative;
    display: flex;
@@ -13,13 +10,15 @@
 .balance_bar{
     margin-top: 2vw;
     margin-left: 3vw;
+    margin-right: 3vw;
     border-radius: 1rem;
-    border: 1px solid #4d4646;
+    width: 60%;
+    background-color: white;
     padding: 1vw;
+    padding-bottom: 0px;
 }
 .balance{
     display: flex;
-    flex: 2;
     margin-left: 1vw;
     padding-right: 2vw;
     flex-direction: column;

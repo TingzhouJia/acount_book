@@ -12,13 +12,15 @@ const ViewTabs =()=>{
      
       return (
         <div className="viewTab">
-          <div className="leftTab">
+          <div className="topTab">
           <BalanceBar/>
+         
           </div>
         
-         <div  className="rightTab"> 
-         kkkkk
-           {/* <PicList Infos={info}/> */}
+         <div  className="bottomTab"> 
+
+        
+           <PicList Infos={info}/>
          </div>       
         </div>
         

@@ -5,49 +5,42 @@ import BalanceBarChart from 'components/Charts/balanceBarChart'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchBalanceList } from 'redux/reducer/plaidReducer'
 import { RootState } from 'redux/store'
-import Balance from 'redux/model/balance'
+
 import { AccountEach } from 'redux/model/account'
 const BalanceBar:React.FC=()=>{
     const dispatch=useDispatch()
     const {plaidLoading,balanceList} =useSelector((state:RootState)=>state.plaid);
-    const [balancesList,setBalanceLists]=useState<Balance|null>(null);
    const [totalBalacne, setTotalBalance] = useState<number|null>(0);
-    const getTotal=useCallback((lists)=>{
+    const getTotal=useCallback(()=>{
         let num:number=0;
-        lists?.accounts?.map((each:AccountEach)=>{
+        balanceList?.accounts?.map((each:AccountEach)=>{
             num+=each.balances.current;
            });
-           
            setTotalBalance(num)
-           console.log(num)
-    },[totalBalacne])
+          
+    },[balanceList])
+
     useEffect(() => {
         
-       // Calbalance();
-        if(!balanceList){
-            dispatch(fetchBalanceList());
-            
+       if(!balanceList){
+        dispatch(fetchBalanceList());
+       }
+        if(balanceList){
+            console.log(1)
+            getTotal()
         }
        
+       //console.log(totalBalacne)
       
-
-     
-
-       setBalanceLists(balanceList);
-       getTotal(balanceList)
-       
-        console.log(1)
-    }, [dispatch,totalBalacne,balancesList,balanceList])
+    }, [balanceList])
     return(
-      <Suspense fallback={<Spin/>}>
         <div className="balance_bar">
         <div className="balanceTop">
             <span className="balance_total">Total Balance:</span>
             <span className="balance_total_count">${totalBalacne}</span>
         </div>
-        <BalanceBarChart data={balanceList?.accounts?balanceList?.accounts:[]}/>
+        <div  >{plaidLoading?<Spin/>:<BalanceBarChart data={balanceList?.accounts?balanceList?.accounts:[]}/>}</div>
       </div>
-      </Suspense>
     )
   }
 

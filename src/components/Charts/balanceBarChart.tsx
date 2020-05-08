@@ -70,9 +70,26 @@ const BalanceBarChart=(props:Props)=> {
       // key字段
       value: "月均降雨量"  
       });
+      const label:any = {
+        offset:20, // 数值，设置坐标轴文本 label 距离坐标轴线的距离
+         // 文本旋转角度
+        // 设置文本的显示样式，还可以是个回调函数，回调函数的参数为该坐标轴对应字段的数值
+        textStyle: {
+          textAlign: 'center', 
+          fill: '#404040',
+          fontSize: '12',
+          fontWeight: 'bold', 
+          textBaseline: 'top' 
+        },
+        formatter:(text:string)=>{
+            return `${text.slice(0,7)}...`
+        },
+        autoRotate:false
+      }
+      
     return (
         <Chart height={200} data={dv} padding="auto" placeholder={<div style={{ position: 'relative', top: '48%', textAlign: 'center' }}>No Data For Now</div>} forceFit>
-            <Axis name="月份"/>
+            <Axis name="月份" label={label}/>
             <Axis name="月均降雨量"/>
             <Tooltip
             crosshairs={{
