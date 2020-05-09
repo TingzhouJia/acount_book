@@ -19,7 +19,6 @@ const ViewTabs =()=>{
           </div>
         
          <div  className="bottomTab"> 
-
             <div className="bottom_left"><FirstTable/></div>
             <div className="bottom_right">kkk</div>
          </div>       

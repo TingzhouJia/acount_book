@@ -6,3 +6,9 @@
         padding-bottom: 0px;
         box-shadow:3px 3px 4px #c0c7c5;
 }
+.budget_card_title{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 1.1rem;
+}

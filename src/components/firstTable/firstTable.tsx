@@ -66,6 +66,7 @@ const FirstTable: React.FC = () => {
                        </div>
                     </Drawer>
                 </Skeleton>
+                <Skeleton loading={plaidLoading} active></Skeleton>
             </div>
         </div>
     )
