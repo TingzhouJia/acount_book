@@ -3,5 +3,9 @@
     flex-direction: row;
 }
 * {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Comic Sans MS', Courier, monospace;
+}
+.sideBar{
+    font-family: 'Bookman';
+    font-size: 1rem;
 }

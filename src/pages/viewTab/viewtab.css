@@ -7,12 +7,20 @@
 }
 
 .topTab{
-    flex: 2;
-   
+    flex: 1;
+    display: flex;
 
 }
 .bottomTab{
-    flex: 4;
-   
+    flex: 3;
+    display: flex;
+    flex-direction: row;
+}
+.bottom_left{
+    flex: 2;
+    
+}
+.bottom_right{
+    flex:1
 }
 /* balance bar */

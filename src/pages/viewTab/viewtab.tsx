@@ -5,6 +5,7 @@ import './viewtab.css'
 
 import BalanceBar from 'components/BalanceBar/balanceBar'
 import PicList from 'components/pictureList/pictureList'
+import FirstTable from 'components/firstTable/firstTable'
 
 
 
@@ -19,8 +20,9 @@ const ViewTabs =()=>{
         
          <div  className="bottomTab"> 
 
-        
-           <PicList />
+            <div className="bottom_left"><FirstTable/></div>
+            <div className="bottom_right">kkk</div>
+           {/* <PicList /> */}
          </div>       
         </div>
         

@@ -35,7 +35,7 @@ export const App:React.FC =()=>{
             <Redirect from='/' to='/home/viewTable' />
           </Switch>
         </Content>
-        <Footer/>
+        
         </Layout>
       
       </Layout>

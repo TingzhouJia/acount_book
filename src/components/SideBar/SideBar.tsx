@@ -1,8 +1,8 @@
-import React ,{useState}from 'react'
-import {Layout,Menu,Button} from 'antd'
+import React from 'react'
+import {Layout,Menu} from 'antd'
 import './sideBar.css'
 import {Link} from 'react-router-dom'
-import {EditOutlined} from '@ant-design/icons'
+import {EditOutlined, BankOutlined, LineChartOutlined, AppstoreAddOutlined, FormOutlined} from '@ant-design/icons'
 const {Sider}=Layout
 
 
@@ -20,25 +20,28 @@ export const SideBar: React.FC<any|React.HTMLAttributes<HTMLBaseElement>>=()=> {
         >
            <Menu.Item key="1" className="bar">
            <Link to="/home/viewTable">
-           <EditOutlined />
-            <span>MY PAYMENT</span>
+           <AppstoreAddOutlined />
+            <span className="sideBar">Dashboard</span>
             </Link>
           </Menu.Item>
           <Menu.Item key="2" className="bar">
               <Link to="/new_record">
-                <span>NEW PAYMENT</span>
+              <FormOutlined />
+                <span className="sideBar">New Records</span>
               </Link>
            
           </Menu.Item>
           <Menu.Item key="3" className="bar">
           <Link to="/lifestyle">
-          <EditOutlined />
-            <span>STATISTICS</span>
+          <LineChartOutlined />
+            <span className="sideBar">Statistics</span>
           </Link>
           </Menu.Item>
           <Menu.Item key="4" className="bar">
-          <EditOutlined />
-            <span>NOTIFICATION</span>
+          <Link to='/bank_account'>
+          <BankOutlined />
+            <span className="sideBar">Banking Accounts</span>
+          </Link>
           </Menu.Item>
           </Menu>
        </div>
