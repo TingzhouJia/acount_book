@@ -1,7 +1,5 @@
 import React from 'react'
-import {Card, Button} from 'antd'
 import {
-   
     Chart,
     Geom,
     Axis,
@@ -9,7 +7,6 @@ import {
     Coord,
     Label,
     Legend,
-   
     Guide,
    
   } from "bizcharts";
@@ -46,16 +43,13 @@ import {
         }
       };
       return (
-        <Card>
-            cover={
-
-            
+         
           <Chart
-            height={window.innerHeight*0.3}
-            data={dv}
-           
-           
-            forceFit
+            height={200}
+            padding="auto"
+            
+            data={dv}          
+           forceFit
           >
             <Coord type={"theta"} radius={0.75} innerRadius={0.6} />
             <Axis name="percent" />
@@ -99,9 +93,8 @@ import {
               />
             </Geom>
           </Chart>
-            }
-            actions={[<Button>Details</Button>]}
-        </Card>
+            
+           
       );
     }
   }

@@ -2,7 +2,7 @@ import React from 'react'
 import {Layout,Menu} from 'antd'
 import './sideBar.css'
 import {Link} from 'react-router-dom'
-import {EditOutlined, BankOutlined, LineChartOutlined, AppstoreAddOutlined, FormOutlined} from '@ant-design/icons'
+import { BankOutlined, LineChartOutlined, AppstoreAddOutlined, FormOutlined} from '@ant-design/icons'
 const {Sider}=Layout
 
 

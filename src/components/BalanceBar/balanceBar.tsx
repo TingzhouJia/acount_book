@@ -39,7 +39,7 @@ const BalanceBar:React.FC=()=>{
             <span className="balance_total">Total Balance:</span>
             <span className="balance_total_count">${totalBalacne}</span>
         </div>
-        <div  >{plaidLoading?<Spin/>:<BalanceBarChart data={balanceList?.accounts?balanceList?.accounts:[]}/>}</div>
+        <div>{plaidLoading?<div style={{display:'flex',justifyContent:'center',alignItems:'center'}}><Spin/></div>:<BalanceBarChart data={balanceList?.accounts?balanceList?.accounts:[]}/>}</div>
       </div>
     )
   }

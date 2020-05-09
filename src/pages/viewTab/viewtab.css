@@ -4,12 +4,15 @@
    display: flex;
    justify-content: space-between;
    flex-direction: column;
+   padding: 1.5vw;
 }
 
 .topTab{
-    flex: 1;
     display: flex;
-
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 2vw;
+    flex: 1;
 }
 .bottomTab{
     flex: 3;
