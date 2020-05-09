@@ -1,38 +1,39 @@
-import {
-    USER_LOADING,
-    USER_LOADED,
-    AUTH_ERROR,
-    LOGIN_SUCCESS,
-    LOGIN_FAIL,
-    LOGOUT_SUCCESS,
-    
-    
-  } from '../actions/actions_type';
+
   import {createSlice,PayloadAction} from '@reduxjs/toolkit'
-  import firebase from '../../firebase'
+  import firebase from '../../firebaseconfig'
   import {AppThunk} from '../store'
-import User from '../model/user'
 interface userType  {
-    user:User|null,
+    user:firebase.User|null,
     loading:boolean,
     isAuthenticated:boolean,
-    
+    error:UserError|null
   }
 
   const initialState:userType = {
     user: null,
     loading:false,
     isAuthenticated:false,
+    error:null
   }
-
+  type UserError={
+    error:string
+  }
   const userSlice=createSlice({
     name:'user',
     initialState,
     reducers:{
         fetchUserStart:startLoading,
-        fetchUserSuccess(state,{payload}:PayloadAction<userType>){
+        signUpSuccess(state,{payload}:PayloadAction<any>){
+            state.loading=false;
+            state.isAuthenticated=true
+        },
+        fetchUserSuccess(state,{payload}:PayloadAction<any>){
               state.loading=false;
               state.isAuthenticated=true;
+        },
+        fetchUserFailed(state,{payload}:PayloadAction<UserError>){
+          state.loading=false;
+          state.error=payload
         }
     }
   })
@@ -42,7 +43,8 @@ interface userType  {
 //export reducer
 export const {
   fetchUserStart,
-  fetchUserSuccess
+  fetchUserSuccess,
+  fetchUserFailed
 }=userSlice.actions
 
 export const signIn = (email:string,password:string):AppThunk => async(dispatch)=> {
@@ -50,19 +52,19 @@ export const signIn = (email:string,password:string):AppThunk => async(dispatch)
      dispatch(fetchUserStart())
     firebase.auth().signInWithEmailAndPassword(email,password).then(
       (user)=>{
-       
-          dispatch({type: LOGIN_SUCCESS,payload:user})
+
+          dispatch(fetchUserSuccess(user.user))
                 
       }).catch(
             (err)=>  {
                
-                dispatch({type:LOGIN_FAIL,payload:err})
+                dispatch(fetchUserFailed(err.message))
             }
           )
   }
   catch(err){
-      console.log(err)
-    dispatch({type:LOGIN_FAIL,payload:err})
+     
+    dispatch(fetchUserFailed(err.message))
   }
 
   
@@ -71,19 +73,27 @@ export const signUp=(email:string,password:string):AppThunk=>async(dispatch)=>{
   try{
       firebase.auth().createUserWithEmailAndPassword(email, password)
       .then(user=>{
-          dispatch({type:LOGIN_SUCCESS,payload:user})
+         
          
       })
       .catch(function(error) {
           // Handle Errors here.
           
-         dispatch({type:LOGIN_FAIL,payload:errorMessage})
+         
           var errorCode = error.code;
           var errorMessage = error.message;
+          dispatch(fetchUserFailed(errorMessage))
           // ...
         });
   }catch(err){
       console.log(err)
   }
+}
+export const verifyAuth=():AppThunk=>async (dispatch)=>{
+  firebase.auth().onAuthStateChanged(user=>{
+    if(user !== null){
+      dispatch(fetchUserSuccess(user))
+    }
+  })
 }
 export default userSlice.reducer

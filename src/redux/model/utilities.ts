@@ -1,7 +1,12 @@
 export default interface Utilities{
+    id:string
     description:string,
-    subtype:string,
+    name:string,
     duration:string,
-    payment:number,
+    amount:number,
     private:boolean,
+    pending:boolean,
+    date:string
+    tags:string[]
+    author:string
 }

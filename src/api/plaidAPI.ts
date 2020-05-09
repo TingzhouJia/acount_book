@@ -6,6 +6,7 @@ export enum Endpoint{
     BalancePath='/balance',
     AccountsPath='/accounts',
     IdentityPath='/identity',
-    HoldingsPath='/holdings'
+    HoldingsPath='/holdings',
+    UtilitiesPath='/utilities'
 }
 
