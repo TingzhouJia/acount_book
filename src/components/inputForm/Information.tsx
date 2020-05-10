@@ -1,11 +1,11 @@
 import React,{useState,useReducer, useCallback,useEffect} from 'react'
-import {Form,Input,Button,DatePicker,Radio,Tabs,message} from 'antd'
+import {Form,Input,Button,DatePicker,message} from 'antd'
 import {outgoingList,incomeList}from '../Utils/utils'
 import {Icons} from '../../iconRes/icons';
 import {useDispatch} from 'react-redux'
 import {useHistory}from 'react-router-dom'
 import './information.css'
-import {ADD_INFO,CHANGE_INCOME,CHANGE_OUTGOINGS} from '../../redux/actions/actions_type'
+
 
 const init:ReducerState={Description:'',price:0,date:'',tags:[''],icon:'',type:''}
 type ReducerState={

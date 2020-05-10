@@ -11,7 +11,7 @@ interface FinanceType {
     error:FinanceError|null
 }
 const initialState:FinanceType={
-    budget:0,
+    budget:10000,
     outcome:0,
     utilities:[],
     financeLoading:false,
@@ -48,6 +48,7 @@ const financeReducer=createSlice({
             state.financeLoading=false
         },
         setOutcome:(state,{payload}:PayloadAction<number>)=>{
+            
             state.outcome=payload;
             state.financeLoading=false
         },
@@ -66,19 +67,20 @@ export const fetchUtilities=():AppThunk=>async (dispatch)=>{
         if (res.data.error != null) {
             dispatch(manipulationError(res.data.error));
         } else {
-            dispatch(fetchUtilitiesSuccess(res.data.utilities))
-            calOutcomes(res.data.utilities)
+
+            dispatch(fetchUtilitiesSuccess(res.data.data.utilities))
+            //calOutcomes(res.data.data.utilities)
+            var num:number=0;
+            res.data.data.utilities.map((each:Utilities)=>{
+                num+=each.amount
+            })
+            dispatch(setOutcome(Math.ceil(num)))
         }
     })
 }
 
-const calOutcomes=(source:Utilities[])=>{
-    var num:number=0;
-    source.map((each:Utilities)=>{
-        num+=each.amount
-
-    })
-    setOutcome(num)
+const calOutcomes=(source:Utilities[]):AppThunk=>(dispatch)=>{
+   
 }
 
 export const addUtilities=(content:Utilities):AppThunk=>async (dispatch)=>{

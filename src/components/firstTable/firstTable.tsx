@@ -16,7 +16,8 @@ const FirstTable: React.FC = () => {
         if (!transactionList) {
             dispatch(fetchTransactionList())
         }
-    })
+       
+    },[dispatch,transactionList])
     const getDrawer=(e:number)=>{
       
         setDrawer(!showDrawer)

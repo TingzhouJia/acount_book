@@ -5,10 +5,18 @@
         padding: 1vw;
         padding-bottom: 0px;
         box-shadow:3px 3px 4px #c0c7c5;
+        display: flex;
+        flex-direction: column;
 }
 .budget_card_title{
     display: flex;
+    flex: 1;
     flex-direction: row;
     justify-content: space-between;
     font-size: 1.1rem;
+}
+.budgetBody{
+    display: flex;
+    flex: 3;
+    flex-grow: 3;
 }
