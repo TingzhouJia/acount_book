@@ -3,7 +3,7 @@ import React, { useEffect, useState, useCallback } from 'react'
 import { ArrowRightOutlined } from '@ant-design/icons'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from 'redux/store'
-import { Skeleton, Drawer } from 'antd'
+import { Skeleton, Drawer, Avatar, Tag } from 'antd'
 import { TransactionEach } from 'redux/model/transaction'
 import './firstTable.css'
 import { fetchTransactionList } from 'redux/reducer/plaidReducer'
@@ -12,6 +12,7 @@ const FirstTable: React.FC = () => {
     const [showDrawer, setDrawer] = useState<boolean | undefined>(false)
     const [target, settarget] = useState<TransactionEach|undefined>(undefined)
     const { transactionList, plaidLoading } = useSelector((state: RootState) => state.plaid)
+    const ColorList = ['volcano', 'orange', 'green', 'blue','magenta','lime','#f50'];
     useEffect(() => {
         if (!transactionList) {
             dispatch(fetchTransactionList())
@@ -33,20 +34,25 @@ const FirstTable: React.FC = () => {
             <div className="first_table_body">
                 <Skeleton loading={plaidLoading} active>
                     {
-                        transactionList?.transactions.slice(0, 5).map((item: TransactionEach,index:number) => {
+                        transactionList?.transactions.slice(0, 6).map((item: TransactionEach,index:number) => {
                             return (
-                                <div className="each_item" onClick={()=>getDrawer(index)} key={`each_item_${index}`}>
+                                <div className="each_item_first_table" onClick={()=>getDrawer(index)} key={`each_item_${index}`}>
+                                    <Avatar shape="circle" style={{background:ColorList[ColorList.length%index]}}>{item.name.slice(0,4)}</Avatar>
                                     <div className="each_item_name">
                                         <span className="each_item_high">{item.name}</span>
                                         <span className="each_item_dark">{item.payment_channel}</span>
                                     </div>
                                     <div className="each_item_name">
-                                        <span className="each_item_high">{item.name}</span>
-                                        <span className="each_item_dark">{item.payment_channel}</span>
+                                        <span className="each_item_high">{item.transaction_type}</span>
+                                        <div className="each_item_category">
+                                        {item.category.map((each:string)=>{
+                                            return <Tag color={ColorList[ColorList.length%index]}>{each}</Tag>
+                                        })}
+                                        </div>
                                     </div>
-                                    <div className="each_item_price each_item_name">
-                                        <span className="each_item_high">{item.amount}</span>
-                                        <span className={`each_item_dark `} style={item.pending ? { color: "red" } : { color: "green" }}>{item.pending ? 'Pending' : 'Paid'}</span>
+                                    <div className="each_item_price each_item_name" style={{alignItems:"flex-end"}}>
+                                        <span className="each_item_high">${item.amount}</span>
+                                        <Tag style={{width:"50px"}} color={item.pending ? "error": "success" } >{item.pending ? 'Pending' : 'Paid'}</Tag>
                                     </div>
 
                                 </div>

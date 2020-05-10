@@ -4,8 +4,7 @@
     box-shadow:3px 3px 3px #c0c7c5;
     padding: 1vw;
     margin-right: 1vw;
-    
-    min-height: 50vh;
+    height: 100%;
 }
 .first_table_body{
     display: flex;
@@ -26,11 +25,10 @@
     padding-right: 1vw;
     font-weight: bold;
 }
-.each_item{
+.each_item_first_table{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 5px;
     margin: 10px;
 }
 .each_item_name{
@@ -54,4 +52,9 @@
     font-size: 0.8rem;
     font-weight: 700;
     color: darkgrey;
+}
+.each_item_category{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
