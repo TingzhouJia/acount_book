@@ -20,3 +20,16 @@
     flex: 3;
     flex-grow: 3;
 }
+.budget_card_content_right{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.budget_card_content_right:hover{
+    cursor: pointer;
+}
+.budget_card_content_bottom{
+    color: red;
+    font-size: 0.5rem;
+}

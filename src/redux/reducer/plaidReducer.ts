@@ -11,11 +11,11 @@ import Identity from 'redux/model/identity'
 interface plaidType {
     transactionList: Transaction| null,
     balanceList: Balance | null,
-    accountList: Account[] | null,
+    accountList: Account | null,
     totalBalance: number,
-    HoldingList: Holding[] | null,
+    HoldingList: Holding | null,
     plaidLoading: boolean,
-    IdentityList: Identity[]
+    IdentityList: Identity|null
     error: FetchError | null
 
 }
@@ -25,10 +25,10 @@ type FetchError = {
 const initialState: plaidType = {
     transactionList: null,
     balanceList: null,
-    accountList: [],
+    accountList: null,
     totalBalance: 0,
-    HoldingList: [],
-    IdentityList: [],
+    HoldingList: null,
+    IdentityList: null,
     plaidLoading: false,
     error: null
 }
@@ -42,7 +42,7 @@ const plaidSlice = createSlice({
             state.transactionList = payload;
             state.plaidLoading = false
         },
-        fetchAccountListSuccess(state, { payload }: PayloadAction<Account[]>) {
+        fetchAccountListSuccess(state, { payload }: PayloadAction<Account>) {
             state.accountList = payload;
                 state.plaidLoading = false
         },
@@ -50,11 +50,11 @@ const plaidSlice = createSlice({
             state.balanceList = payload;
                 state.plaidLoading = false
         },
-        fetchHoldingListSuccess(state, { payload }: PayloadAction<Holding[]>) {
+        fetchHoldingListSuccess(state, { payload }: PayloadAction<Holding>) {
             state.HoldingList = payload;
                 state.plaidLoading = false
         },
-        fetchIdentityListSuccess(state, { payload }: PayloadAction<Identity[]>) {
+        fetchIdentityListSuccess(state, { payload }: PayloadAction<Identity>) {
             state.IdentityList = payload;
                 state.plaidLoading = false
         },

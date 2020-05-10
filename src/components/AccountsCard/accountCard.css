@@ -1,0 +1,22 @@
+.accountCard{
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow:3px 3px 3px #c0c7c5;
+    padding: 1vw;
+    height: 100%;
+}
+.account_card_top{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.account_card_title{
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+.accout_card_body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

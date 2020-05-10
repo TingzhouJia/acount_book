@@ -51,7 +51,7 @@ import {
       const cols = {
         percent: {
           formatter: (val:number)=> {
-            let val1 = val * 100 + "%";
+            let val1 = Math.ceil(val) * 100 + "%";
             return val1;
           }
         }
@@ -75,11 +75,11 @@ import {
             <Geom
               type="intervalStack"
               position="percent"
-              color={["item",["#e99f89","#15cda8"]]}
+              color={["item",["#ee5a5a","#15cda8"]]}
               tooltip={[
                 "item*percent",
                 (item, percent) => {
-                  percent = percent * 100 + "%";
+                  percent = Math.ceil(percent * 100) + "%";
                   return {
                     name: item,
                     value: percent
