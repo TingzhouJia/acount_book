@@ -1,5 +1,5 @@
 .budgetCard{  
-        width: 25vw;
+        width: 20%;
         border-radius: 1rem;
         background-color: white;
         padding: 1vw;
@@ -10,15 +10,14 @@
 }
 .budget_card_title{
     display: flex;
-    flex: 1;
+    height: 20%;
     flex-direction: row;
     justify-content: space-between;
     font-size: 1.1rem;
 }
 .budgetBody{
     display: flex;
-    flex: 3;
-    flex-grow: 3;
+    height: 80%;
 }
 .budget_card_content_right{
     display: flex;

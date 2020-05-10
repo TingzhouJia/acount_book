@@ -59,7 +59,8 @@ import {
       return (
          
           <Chart
-            height={200}
+            height={window.innerHeight*0.2}
+            
             padding="auto"           
             data={dv}   
             cols={cols}       

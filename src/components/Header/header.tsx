@@ -11,7 +11,7 @@ const Headers:React.FC=()=>{
   let location=useLocation()
   let site=location.pathname.split('/')
   return(
-      <Header style={{backgroundColor:"#eceaf1",height:"2vw"}}>
+      <Header style={{backgroundColor:"#eceaf1"}}>
         <div className="Header_fold">
         
           <Breadcrumb className="sites">

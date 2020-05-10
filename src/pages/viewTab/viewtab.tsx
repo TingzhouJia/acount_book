@@ -7,6 +7,7 @@ import BalanceBar from 'components/BalanceBar/balanceBar'
 import FirstTable from 'components/firstTable/firstTable'
 import BudgetCard from 'components/BudgetCard/BudgetCard'
 import AccountCard from 'components/AccountsCard/accountCard'
+import HoldingCard from 'components/HoldingCard/holdingCard'
 
 
 
@@ -16,7 +17,9 @@ const ViewTabs =()=>{
         <div className="viewTab">
           <div className="topTab">
           <BalanceBar/>
+          <HoldingCard/>
           <BudgetCard/>
+
           </div>
         
          <div  className="bottomTab"> 

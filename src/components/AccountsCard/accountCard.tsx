@@ -29,7 +29,7 @@ const AccountCard: React.FC = () => {
                     {
                         accountList?.accounts.slice(0,5)?.map((item: AccountEach,index:number) => {
                             return (
-                                <div className="each_account">
+                                <div className="each_account" key={`account_each_item_key_${index}`}>
                                     <div className="each_account_row">      
                                     <Avatar shape="circle" style={{background:ColorList[ColorList.length%index]}}>{item.official_name.slice(0,5)}</Avatar>
                                     <div className="each_account_col" style={{paddingLeft:"5px"}}>

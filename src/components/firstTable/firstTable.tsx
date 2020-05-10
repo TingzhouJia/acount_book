@@ -3,7 +3,7 @@ import React, { useEffect, useState, useCallback } from 'react'
 import { ArrowRightOutlined } from '@ant-design/icons'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from 'redux/store'
-import { Skeleton, Drawer, Avatar, Tag } from 'antd'
+import { Skeleton, Drawer, Avatar, Tag, Row } from 'antd'
 import { TransactionEach } from 'redux/model/transaction'
 import './firstTable.css'
 import { fetchTransactionList } from 'redux/reducer/plaidReducer'
@@ -45,14 +45,14 @@ const FirstTable: React.FC = () => {
                                     <div className="each_item_name">
                                         <span className="each_item_high">{item.transaction_type}</span>
                                         <div className="each_item_category">
-                                        {item.category.map((each:string)=>{
-                                            return <Tag color={ColorList[ColorList.length%index]}>{each}</Tag>
+                                        {item.category.map((each:string,index1:number)=>{
+                                            return <Tag key={`each_item_key_${index}_${index1}`} color={ColorList[ColorList.length%index]}>{each}</Tag>
                                         })}
                                         </div>
                                     </div>
                                     <div className="each_item_price each_item_name" style={{alignItems:"flex-end"}}>
                                         <span className="each_item_high">${item.amount}</span>
-                                        <Tag style={{width:"50px"}} color={item.pending ? "error": "success" } >{item.pending ? 'Pending' : 'Paid'}</Tag>
+                                        <Tag  style={{width:"50px"}} color={item.pending ? "error": "success" } >{item.pending ? 'Pending' : 'Paid'}</Tag>
                                     </div>
 
                                 </div>
@@ -74,6 +74,7 @@ const FirstTable: React.FC = () => {
                     </Drawer>
                 </Skeleton>
                 <Skeleton loading={plaidLoading} active></Skeleton>
+                <Skeleton paragraph={{rows:2}}  loading={plaidLoading} active></Skeleton>
             </div>
         </div>
     )

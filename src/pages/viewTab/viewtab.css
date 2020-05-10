@@ -12,7 +12,8 @@
     flex-direction: row;
     justify-content: space-between;
     margin-bottom: 2vw;
-
+    height: 30vh;
+    width: 100%;
 }
 .bottomTab{
    
