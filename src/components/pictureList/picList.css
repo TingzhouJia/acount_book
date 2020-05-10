@@ -1,11 +1,12 @@
 .payment_table{
    margin-top: 3vw;
-    padding-left: 3vw;
-    padding-right: 3vw;
+   padding: 2vw;
     display: flex;
     height: 100%;
     flex-direction: column;
     justify-content: center;
+    
+    
 }
 .payment_table_choice{
     display: flex;
@@ -37,15 +38,16 @@
     color: aquamarine;
 }
 .paymenta_table_border{
-    border: 1px solid black;
+    background-color: white;
     border-radius: 1rem;
-    box-shadow: 2px 2px #eeeeee ;
+    padding: 1vw;
+    box-shadow:3px 3px 3px #c0c7c5;
 }
 .payment_content_filter{
     display: flex;
     padding: 2vw;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-end;
 }
 .payment_option{
     margin-right: 2vw;
@@ -66,6 +68,9 @@
 }
 .payment_option_span{
     margin-right: 1vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 .payment_content tr th {
     padding: 1vw;

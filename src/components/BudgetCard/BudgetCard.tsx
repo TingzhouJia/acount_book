@@ -29,7 +29,7 @@ const BudgetCard: React.FC = () => {
                 </div>
             </div>
           {financeLoading ? <Spin />: <CircleCard outcome={outcome} budget={budget} />}
-            
+          
         </div>
     )
 }

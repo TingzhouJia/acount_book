@@ -2,7 +2,7 @@ import React from 'react'
 import {Layout,Menu} from 'antd'
 import './sideBar.css'
 import {Link} from 'react-router-dom'
-import { BankOutlined, LineChartOutlined, AppstoreAddOutlined, FormOutlined} from '@ant-design/icons'
+import { BankOutlined, LineChartOutlined, AppstoreAddOutlined, FormOutlined, AccountBookOutlined} from '@ant-design/icons'
 const {Sider}=Layout
 
 
@@ -41,6 +41,12 @@ export const SideBar: React.FC<any|React.HTMLAttributes<HTMLBaseElement>>=()=> {
           <Link to='/bank_account'>
           <BankOutlined />
             <span className="sideBar">Banking Accounts</span>
+          </Link>
+          </Menu.Item>
+          <Menu.Item key="5" className="bar">
+          <Link to='/transactions'>
+          <AccountBookOutlined />
+            <span className="sideBar">Transactions</span>
           </Link>
           </Menu.Item>
           </Menu>

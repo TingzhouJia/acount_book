@@ -1,187 +1,146 @@
-import React, { useEffect } from 'react'
-import { Table,Select,Divider, Input,Button,Tag, Pagination} from 'antd';
+import React, { useEffect, useState, useCallback } from 'react'
+import { Table, Select, Divider, Input, Button, Tag, Drawer } from 'antd';
 
-import PropTypes from 'prop-types'
-import {useDispatch, useSelector} from 'react-redux'
-import {Icons} from '../../iconRes/icons'
+
+import { useDispatch, useSelector } from 'react-redux'
 import './picList.css'
 import { RootState } from 'redux/store';
 import { fetchTransactionList } from 'redux/reducer/plaidReducer';
-const {Option}=Select
-const rowSelection = {
-  
-  onChange: ()=>{},
-  hideDefaultSelections: true,
-  selections: [
+import { LineChartOutlined, RightOutlined, CalendarOutlined, TagsOutlined } from '@ant-design/icons';
+import { TransactionEach } from 'redux/model/transaction';
+const { Option } = Select
+
+
+const PicList: React.FC = () => {
+
+  const dispatch = useDispatch()
+  const { plaidLoading, transactionList } = useSelector((state: RootState) => state.plaid)
+  const [Visible, setVisible] = useState(false)
+  const [curModel, setcurModel] = useState<TransactionEach | undefined>(undefined)
+  const ColorList = ['volcano', 'orange', 'green', 'blue', 'magenta', 'lime', '#f50'];
+  useEffect(() => {
+    if (!transactionList) {
+      dispatch(fetchTransactionList())
+    }
+
+  }, [])
+
+  const setModelUp=useCallback(
+    (id:number) => {
+      setcurModel(transactionList?.transactions[id])
+      setVisible(!Visible)
+    },
+    [curModel],
+  )
+
+  const columns = [
+   
     {
-      key: 'all-data',
-      text: 'Select All Data',
-      onSelect: () => {
-       
-      },
+      title: 'Payment ',
+      dataIndex: 'name',
+      key: 'name',
+      width: "20%"
     },
     {
-      key: 'odd',
-      text: 'Select Odd Row',
-      onSelect: ()=>{}
+      title: 'Payment Type ',
+      dataIndex: 'payment_channel',
+      key: 'payment_channel',
     },
     {
-      key: 'even',
-      text: 'Select Even Row',
-      onSelect: ()=>{}
-      },
-  
-  ],
-};
+      title: 'Amount',
+      dataIndex: 'amount',
+      key: 'amount',
+    },
+    {
+      title: 'Date',
+      dataIndex: 'date',
+      key: 'date',
+    },
+    {
+      title: 'Tags',
+      key: 'category',
+      dataIndex: 'category',
+      render: (tags: string[]) => (
+        <span>
+          {tags.map(tag => {
+            let color = ColorList[tag.length % ColorList.length]
+            return (
+              <Tag color={color} key={tag}>
+                {tag.toUpperCase()}
+              </Tag>
+            );
+          })}
+        </span>
+      ),
+    },
+    {
+      title: 'Action',
+      key: 'action',
+      render: (id: number) => (
+        <span>
+          <Button >edit</Button>
+          <Divider type="vertical" />
+          <Button onClick={()=>setModelUp(id)} >details</Button>
 
+        </span>
+      )
+    }
+  ];
 
-const PicList:React.FC=()=>{
+  return (
+    <div className='payment_table'>
+      <div className="payment_table_choice">
 
-    const dispatch=useDispatch()
-    const {plaidLoading,transactionList}=useSelector((state:RootState)=>state.plaid)
-    useEffect(() => {
-      if(!transactionList){
-        dispatch(fetchTransactionList())
-      }
-      
-    }, [])
-    // const onDeleteItem=(id:number)=>{
-       
-    //     const {price,tags}=props.Infos[id]
-        
-    //     if(tags.indexOf('Outgoings')!=-1){
-    //       dispatch({type:DELETE_OUTGOINGS,data:price})
-    //     }else{
-    //       dispatch({type:DELETE_INCOME,data:price})
-    //     }
-    //     dispatch({type:DELETE_INFO,data:id})
-    // }
-    
-  
-        
-    //   const items=props.Infos
-      const columns = [
-        //   {title:'Icon',
-        //     dataIndex:'icon',
-        //     key:'icon',
-        //     render:(icon)=>
-        //          (<Icons type={'icon-'+icon} style={{ fontSize: '30px', color: 'black' }}/>)
-            
-        // },
-        // {
-        //   title:"transaction_id",
-        //   dataIndex:"transaction_id",
-        //   key:"id"
-        // },
-        {
-          title: 'Payment ',
-          dataIndex: 'name',
-          key: 'name',
-          width:"20%"
-        },
-        {
-          title: 'Payment Type ',
-          dataIndex: 'payment_channel',
-          key: 'payment_channel',
-        },
-        {
-          title: 'Amount',
-          dataIndex: 'amount',
-          key: 'amount',
-        },
-        {
-          title: 'Date',
-          dataIndex: 'date',
-          key: 'date',
-        },
-        {
-            title: 'Tags',
-            key: 'category',
-            dataIndex: 'category',
-            render: (tags:string[]) => (
-              <span>
-                {tags.map(tag => {
-                  let color = tag.length > 5 ? 'geekblue' : 'green';
-                  if (tag === 'Outgoings') {
-                    color = 'volcano';
-                  }
-                  return (
-                    <Tag color={color} key={tag}>
-                      {tag.toUpperCase()}
-                    </Tag>
-                  );
-                })}
-              </span>
-            ),
-          },
-          {
-            title: 'Action',
-            key: 'action',
-            render: (id:string) => (
-              <span>
-                <Button icon='edit' ></Button>
-                <Divider type="vertical" />
-                <Button  >details</Button>
-              
-              </span>
-            )
-          }
-      ];
+        <span style={{ fontWeight: 800, marginRight: "2vw", fontSize: "2rem", paddingLeft: "1vw" }}>Payments</span>
+        <span className='payment_p'>All</span>
+        <span className='payment_p'>FixedCharge</span>
+        <span className='payment_p'>Income</span>
+        <span className='payment_p'>Cost</span>
 
-    return (  
-         <div className='payment_table'>
-           <div className="payment_table_choice">
-             
-              <span style={{fontWeight:800,marginRight:"2vw",fontSize:"2rem",paddingLeft:"1vw"}}>PAYMENTS</span>
-              <span className='payment_p'>All</span>
-              <span className='payment_p'>FixedCharge</span>
-              <span className='payment_p'>Income</span>
-              <span className='payment_p'>Cost</span>
-             
-              <span className="choice_right">
-                {/* <Icon type="line-chart" style={{paddingRight:"1vw"}}/> */}
-                 Analytics 
-              {/* <Icon type="right" style={{paddingRight:"1vw",paddingLeft:"1vw"}} /> */}
-              </span>
-           </div>
-           <div className="paymenta_table_border">
-             <div className="payment_content_filter">
-               <div className="payment_option"> 
-               <span className="payment_option_span">
-                 {/* <Icon type="calendar" /> */}
-                 DATE</span>
-             <Select defaultValue="LAST WEEK" className="payment_select" onChange={()=>{}}>
-                  <Option value="TWO_WEEK">RECENT 2 WEEKS</Option>
-                  <Option value="MONTH">LAST MONTH</Option>
-                 <Option value="SEASON" >
-                    THIS SEASON
-                </Option>
-         </Select>
-               </div>
+        <span className="choice_right">
+          <LineChartOutlined />
+                 Analytics
+                 <RightOutlined />
+        </span>
+      </div>
+      <div className="paymenta_table_border">
+        <div className="payment_content_filter">
           <div className="payment_option">
-          <span className="payment_option_span">
-            {/* <Icon type="tag" /> */}
-            TYPE</span>
-         <Select defaultValue="LAST WEEK" className="payment_select" onChange={()=>{}}>
-                  <Option value="TWO_WEEK">RECENT 2 WEEKS</Option>
-                  <Option value="MONTH">LAST MONTH</Option>
-                 <Option value="SEASON" >
-                    THIS SEASON
+            <div className="payment_option_span">
+            <CalendarOutlined />
+                 DATE</div>
+            <Select defaultValue="LAST WEEK" style={{width:200}} className="payment_select" onChange={() => { }}>
+              <Option value="TWO_WEEK">RECENT 2 WEEKS</Option>
+              <Option value="MONTH">LAST MONTH</Option>
+              <Option value="SEASON" >
+                THIS SEASON
                 </Option>
-         </Select>
+            </Select>
           </div>
-         <Input placeholder="Search" className="payment_search" style={{width:"20vw"}}/>
-             </div>
-           <Table className="payment_content"  rowSelection={rowSelection} dataSource={transactionList?.transactions} columns={columns} rowKey="id" />
-           </div>
-           
-         </div>
-    )
-        }
+          <div className="payment_option">
+            <div className="payment_option_span">
+            <TagsOutlined />
+            TYPE</div>
+            <Select defaultValue="LAST WEEK" style={{width:200}} className="payment_select" onChange={() => { }}>
+              <Option value="TWO_WEEK">RECENT 2 WEEKS</Option>
+              <Option value="MONTH">LAST MONTH</Option>
+              <Option value="SEASON" >
+                THIS SEASON
+                </Option>
+            </Select>
+          </div>
+          <Input placeholder="Search" className="payment_search" style={{ width: "20vw" }} />
+        </div>
+        <Table className="payment_content" loading={plaidLoading} dataSource={transactionList?.transactions} columns={columns} rowKey="account_id" />
+      </div>
+      <Drawer placement="right" visible={Visible} closable={false} onClose={()=>setVisible(!Visible)}>
 
-PicList.propTypes={
-    Infos:PropTypes.array.isRequired
+      </Drawer>
+    </div>
+  )
 }
+
+
 
 // const mapStateProps=state=>({
 //   Infos:state.Details

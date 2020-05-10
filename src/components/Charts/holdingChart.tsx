@@ -1,13 +1,18 @@
 import React from "react";
 import {
+  G2,
   Chart,
   Geom,
   Axis,
   Tooltip,
-  Legend, 
+  Legend,
+  Util,
+  PathUtil,
+  Shape, 
 } from "bizcharts";
 
 class YearLine extends React.Component {
+
   render() {
     const data = [
       {
@@ -136,6 +141,21 @@ class YearLine extends React.Component {
         range: [0, 1]
       }
     };
+  
+   
+    const COLORS = [
+      "#0088FE",
+      "#00C49F",
+      "#FFBB28",
+      "#FF8441",
+      "#EE3B61",
+      "#FF6590",
+      "#9575DE",
+      "#8EA4F1",
+      "#C6E8D2",
+      "#FFDB91",
+      "#FF9054"
+    ];
     return (
         <div className="YearLine"><Chart height={window.innerHeight*0.3} data={data} scale={cols} forceFit>
         <Legend />

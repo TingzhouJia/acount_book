@@ -12,6 +12,7 @@ import LifeStyle from './pages/LifeStyle/LifeStyle'
 import YearChart from './pages/YearCharts/YearCharts'
 import './App.css'
 import { SideBar } from 'components/SideBar/SideBar';
+import TransactionPage from 'pages/TransactionPage/transactionPage';
 
 const {Content,Footer}=Layout
 export const App:React.FC =()=>{
@@ -30,7 +31,8 @@ export const App:React.FC =()=>{
           <Switch>       
             <Route path='/home/viewTable' component={ViewTabs}></Route>
             <Route path='/new_record' component={NewRecord}></Route>
-            <Route path='/lifestyle' component={LifeStyle}/>      
+            <Route path='/lifestyle' component={LifeStyle}/>   
+            <Route path="/transactions" component={TransactionPage}/>   
             <Route component={NotFound}></Route>
             <Redirect from='/' to='/home/viewTable' />
           </Switch>
