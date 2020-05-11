@@ -1,9 +1,9 @@
 
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useEffect, useState } from 'react'
 import { ArrowRightOutlined } from '@ant-design/icons'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from 'redux/store'
-import { Skeleton, Drawer, Avatar, Tag, Row } from 'antd'
+import { Skeleton, Drawer, Avatar, Tag } from 'antd'
 import { TransactionEach } from 'redux/model/transaction'
 import './firstTable.css'
 import { fetchTransactionList } from 'redux/reducer/plaidReducer'

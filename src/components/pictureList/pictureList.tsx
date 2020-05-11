@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react'
 import { Table, Select, Divider, Input, Button, Tag, Drawer } from 'antd';
-import { formatDistance, format } from 'date-fns'
+import { formatDistance } from 'date-fns'
 
 import { useDispatch, useSelector } from 'react-redux'
 import './picList.css'
@@ -23,7 +23,7 @@ const PicList: React.FC = () => {
       dispatch(fetchTransactionList())
     }
 
-  }, [])
+  }, [transactionList,dispatch])
 
   const setModelUp = useCallback(
     (id: TransactionEach) => {
@@ -56,6 +56,9 @@ const PicList: React.FC = () => {
       title: 'Date',
       dataIndex: 'date',
       key: 'date',
+      sorter:(a:TransactionEach,b:TransactionEach)=>Date.parse(a.date)-Date.parse(b.date),
+      
+
     },
     {
       title: 'Tags',
@@ -78,12 +81,10 @@ const PicList: React.FC = () => {
       title: 'Action',
       key: 'action',
       render: (id: TransactionEach) => (
-
         <span>
           <Button >edit</Button>
           <Divider type="vertical" />
           <Button onClick={() => setModelUp(id)} >details</Button>
-
         </span>
       )
     }
@@ -183,7 +184,7 @@ const PicList: React.FC = () => {
           </div>
           <div className="transaction_detail_body1">
               <span>Location</span>
-              
+
           </div>
           <div className="transaction_detail_body1">
               <span>Payment Details</span>
