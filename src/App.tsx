@@ -7,9 +7,7 @@ import ViewTabs from './pages/viewTab/viewtab'
 import Header from './components/Header/header'
 import NewRecord from './pages/new_record/new_record'
 import NotFound from './pages/NotFound/notFound'
-import PropTypes from 'prop-types'
 import LifeStyle from './pages/LifeStyle/LifeStyle'
-import YearChart from './pages/YearCharts/YearCharts'
 import './App.css'
 import { SideBar } from 'components/SideBar/SideBar';
 import TransactionPage from 'pages/TransactionPage/transactionPage';
@@ -39,9 +37,9 @@ export const App:React.FC =()=>{
             <Redirect from='/' to='/home/viewTable' />
           </Switch>
         </Content>
-        
+        <Footer/>
         </Layout>
-      
+          
       </Layout>
         
       )

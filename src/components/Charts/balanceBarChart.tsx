@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {Chart, Geom, Axis, Tooltip, Legend, Coord } from 'bizcharts'
+import {Chart, Geom, Axis, Tooltip, Legend } from 'bizcharts'
 import { AccountEach } from 'redux/model/account'
 const DataSet =require("@antv/data-set");
 interface Props{
@@ -11,7 +11,7 @@ const BalanceBarChart=(props:Props)=> {
 
     useEffect(()=>{
             const washData=(data:AccountEach[]):any=>{
-        if(data.length==0){
+        if(data.length===0){
             return
         }
          const afterData=[{name:"Current"},{name:"Available"}];
@@ -27,6 +27,7 @@ const BalanceBarChart=(props:Props)=> {
 // let current:number=each.balances.current
 // afterData.push({type:"Income",name:name1,value:current})
 // afterData.push({type:"Available",name:name1,value:each.balances.available})
+        return 
         })
 
         setDataSource(afterData);

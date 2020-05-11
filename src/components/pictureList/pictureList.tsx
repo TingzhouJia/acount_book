@@ -31,7 +31,7 @@ const PicList: React.FC = () => {
       setcurModel(id)
       setVisible(!Visible)
     },
-    [curModel, Visible],
+    [ Visible],
   )
 
   const columns = [

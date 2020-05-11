@@ -80,7 +80,7 @@ export const signUp=(email:string,password:string):AppThunk=>async(dispatch)=>{
           // Handle Errors here.
           
          
-          var errorCode = error.code;
+         
           var errorMessage = error.message;
           dispatch(fetchUserFailed(errorMessage))
           // ...

@@ -32,7 +32,7 @@ const BalanceBar:React.FC=()=>{
        
        //console.log(totalBalacne)
       
-    }, [balanceList,getTotal])
+    }, [balanceList,getTotal,dispatch])
     return(
         <div className="balance_bar">
         <div className="balanceTop">

@@ -5,9 +5,7 @@ import {
     Axis,
     Tooltip,
     Coord,
-    Label,
     Legend,
-    Guide,
    
   } from "bizcharts";
   const DataSet =require("@antv/data-set") 
@@ -39,7 +37,7 @@ import {
         b.count=budget
         return [a,b]
       })
-    }, [props])
+    }, [props,outcome,budget])
       
       const dv = new DataView();
       dv.source(source).transform({

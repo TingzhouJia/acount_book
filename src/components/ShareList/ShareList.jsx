@@ -1,5 +1,5 @@
 import React from 'react'
-import {useHistory} from 'react-router-dom'
+
 import './ShareList.css'
 const mocks=[{name:'The Musician',img:'https://images.unsplash.com/photo-1556449895-a33c9dba33dd?auto=format&fit=crop&w=934&q=80'},
 {name:'The Gamer',img:'https://images.unsplash.com/photo-1554213352-5ffe6534af08?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=932&q=80'},
