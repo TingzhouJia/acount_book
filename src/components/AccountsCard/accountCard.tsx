@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import './accountCard.css'
 import { PlusSquareFilled, ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons'
 import { useSelector, useDispatch } from 'react-redux'
@@ -15,7 +15,7 @@ const AccountCard: React.FC = () => {
             dispatch(fetchAccountList())
         }
        
-    }, [dispatch])
+    }, [dispatch,accountList])
     return (
         <div className="accountCard">
             <div className="account_card_top">

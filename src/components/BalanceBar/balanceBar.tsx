@@ -1,5 +1,5 @@
-import React, { useEffect, Suspense, useState, useCallback } from 'react'
-import {Button, Spin} from 'antd'
+import React, { useEffect, useState, useCallback } from 'react'
+import { Spin} from 'antd'
 import './balanceBar.css'
 import BalanceBarChart from 'components/Charts/balanceBarChart'
 import { useDispatch, useSelector } from 'react-redux'
@@ -32,14 +32,14 @@ const BalanceBar:React.FC=()=>{
        
        //console.log(totalBalacne)
       
-    }, [balanceList])
+    }, [balanceList,getTotal])
     return(
         <div className="balance_bar">
         <div className="balanceTop">
             <span className="balance_total">Total Balance:</span>
             <span className="balance_total_count">${totalBalacne}</span>
         </div>
-       {plaidLoading?<div className="balance_content"><Spin/></div>:<BalanceBarChart data={balanceList?.accounts?balanceList?.accounts:[]}/>}
+       {plaidLoading?<div className="balance_content"><Spin/></div>:<BalanceBarChart  data={balanceList?.accounts?balanceList?.accounts:[]}/>}
       </div>
     )
   }

@@ -16,7 +16,7 @@ const BudgetCard: React.FC = () => {
         }
 
 
-    }, [dispatch])
+    }, [dispatch,budget,outcome])
     return (
         <div className="budgetCard">
             <div className="budget_card_title">

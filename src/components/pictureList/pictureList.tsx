@@ -26,11 +26,12 @@ const PicList: React.FC = () => {
   }, [])
 
   const setModelUp=useCallback(
-    (id:number) => {
-      setcurModel(transactionList?.transactions[id])
+    (id:TransactionEach) => {
+      console.log(id)
+      setcurModel(id)
       setVisible(!Visible)
     },
-    [curModel],
+    [curModel,Visible],
   )
 
   const columns = [
@@ -76,7 +77,8 @@ const PicList: React.FC = () => {
     {
       title: 'Action',
       key: 'action',
-      render: (id: number) => (
+      render: (id: TransactionEach) => (
+       
         <span>
           <Button >edit</Button>
           <Divider type="vertical" />
@@ -133,8 +135,8 @@ const PicList: React.FC = () => {
         </div>
         <Table className="payment_content" loading={plaidLoading} dataSource={transactionList?.transactions} columns={columns} rowKey="account_id" />
       </div>
-      <Drawer placement="right" visible={Visible} closable={false} onClose={()=>setVisible(!Visible)}>
-
+      <Drawer width={'40vw'} placement="right" visible={Visible} closable={false} onClose={()=>setVisible(!Visible)}>
+  <span>{curModel?.account_id}</span>
       </Drawer>
     </div>
   )
