@@ -22,7 +22,7 @@ export interface TransactionEach {
     category_id: string,
     date: string,
     name: string,
-    curriso_currency_code: string,
+    iso_currency_code: string,
     payment_channel: string,
     payment_meta: PaymentMeta | null
     amount: number,

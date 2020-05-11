@@ -82,62 +82,62 @@ function startLoading(state: plaidType) {
 
 export const fetchTransactionList = (limit: number = 30): AppThunk => async (dispatch) => {
     dispatch(fetchStart());
-    await axios.get(`${testRoot + Endpoint.TransactionsPath}`, { params: { date: limit } }).then((res) => {
+    await axios.get(`${testRoot + Endpoint.TransactionsPath}`, { params: { date: limit },timeout:2000 }).then((res) => {
         if (res.data.error != null) {
             dispatch(fetchFailed(res.data.error));
         } else {
             dispatch(fetchTransitionListSuccess(res.data.transactions))
         }
 
-    })
+    }).catch(error=>{dispatch(fetchFailed(error))})
 }
 
 export const fetchAccountList = (): AppThunk => async (dispatch) => {
     dispatch(fetchStart());
-    await axios.get(`${testRoot + Endpoint.AccountsPath}`).then((res) => {
+    await axios.get(`${testRoot + Endpoint.AccountsPath}`,{timeout:2000}).then((res) => {
         if (res.data.error != null) {
             dispatch(fetchFailed(res.data.error));
         } else {
             dispatch(fetchAccountListSuccess(res.data.accounts))
         }
 
-    })
+    }).catch(error=>{dispatch(fetchFailed(error))})
 }
 
 export const fetchIdentityList = (): AppThunk => async (dispatch) => {
     dispatch(fetchStart());
-    await axios.get(`${testRoot + Endpoint.IdentityPath}`).then((res) => {
+    await axios.get(`${testRoot + Endpoint.IdentityPath}`,{timeout:2000}).then((res) => {
         if (res.data.error != null) {
             dispatch(fetchFailed(res.data.error));
         } else {
             dispatch(fetchIdentityListSuccess(res.data.identity))
         }
 
-    })
+    }).catch(error=>{dispatch(fetchFailed(error))})
 }
 
 export const fetchBalanceList = (): AppThunk => async (dispatch) => {
     dispatch(fetchStart());
-    await axios.get(`${testRoot + Endpoint.BalancePath}`).then((res) => {
+    await axios.get(`${testRoot + Endpoint.BalancePath}`,{timeout:2000}).then((res) => {
         if (res.data.error != null) {
             dispatch(fetchFailed(res.data.error));
         } else {
             dispatch(fetchBalanceListSuccess(res.data.balance))
         }
 
-    })
+    }).catch(error=>{dispatch(fetchFailed(error))})
 }
 
 export const fetchHoldingList = (): AppThunk => async (dispatch) => {
     dispatch(fetchStart());
-    await axios.get(`${testRoot + Endpoint.HoldingsPath}`).then((res) => {
+    await axios.get(`${testRoot + Endpoint.HoldingsPath}`,{timeout:2000}).then((res) => {
         if (res.data.error != null) {
             dispatch(fetchFailed(res.data.error));
         } else {
             dispatch(fetchHoldingListSuccess(res.data.holdings))
         }
 
-    })
+    }).catch(error=>{dispatch(fetchFailed(error))})
 }
 export default plaidSlice.reducer
 

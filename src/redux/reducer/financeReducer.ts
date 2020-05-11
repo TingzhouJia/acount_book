@@ -63,7 +63,7 @@ function startLoading(state: FinanceType) {
 }
 export const fetchUtilities=():AppThunk=>async (dispatch)=>{
     dispatch(fetchStart())
-    await axios.get(`${testRoot + Endpoint.UtilitiesPath}`).then((res)=>{
+    await axios.get(`${testRoot + Endpoint.UtilitiesPath}`,{timeout:2000}).then((res)=>{
         if (res.data.error != null) {
             dispatch(manipulationError(res.data.error));
         } else {
@@ -76,7 +76,7 @@ export const fetchUtilities=():AppThunk=>async (dispatch)=>{
             })
             dispatch(setOutcome(Math.ceil(num)))
         }
-    })
+    }).catch(error=>{dispatch(manipulationError(error))})
 }
 
 const calOutcomes=(source:Utilities[]):AppThunk=>(dispatch)=>{

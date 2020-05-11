@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react'
 import { Table, Select, Divider, Input, Button, Tag, Drawer } from 'antd';
-
+import { formatDistance, format } from 'date-fns'
 
 import { useDispatch, useSelector } from 'react-redux'
 import './picList.css'
@@ -25,17 +25,17 @@ const PicList: React.FC = () => {
 
   }, [])
 
-  const setModelUp=useCallback(
-    (id:TransactionEach) => {
+  const setModelUp = useCallback(
+    (id: TransactionEach) => {
       console.log(id)
       setcurModel(id)
       setVisible(!Visible)
     },
-    [curModel,Visible],
+    [curModel, Visible],
   )
 
   const columns = [
-   
+
     {
       title: 'Payment ',
       dataIndex: 'name',
@@ -78,11 +78,11 @@ const PicList: React.FC = () => {
       title: 'Action',
       key: 'action',
       render: (id: TransactionEach) => (
-       
+
         <span>
           <Button >edit</Button>
           <Divider type="vertical" />
-          <Button onClick={()=>setModelUp(id)} >details</Button>
+          <Button onClick={() => setModelUp(id)} >details</Button>
 
         </span>
       )
@@ -109,9 +109,9 @@ const PicList: React.FC = () => {
         <div className="payment_content_filter">
           <div className="payment_option">
             <div className="payment_option_span">
-            <CalendarOutlined />
+              <CalendarOutlined />
                  DATE</div>
-            <Select defaultValue="LAST WEEK" style={{width:200}} className="payment_select" onChange={() => { }}>
+            <Select defaultValue="LAST WEEK" style={{ width: 200 }} className="payment_select" onChange={() => { }}>
               <Option value="TWO_WEEK">RECENT 2 WEEKS</Option>
               <Option value="MONTH">LAST MONTH</Option>
               <Option value="SEASON" >
@@ -121,9 +121,9 @@ const PicList: React.FC = () => {
           </div>
           <div className="payment_option">
             <div className="payment_option_span">
-            <TagsOutlined />
+              <TagsOutlined />
             TYPE</div>
-            <Select defaultValue="LAST WEEK" style={{width:200}} className="payment_select" onChange={() => { }}>
+            <Select defaultValue="LAST WEEK" style={{ width: 200 }} className="payment_select" onChange={() => { }}>
               <Option value="TWO_WEEK">RECENT 2 WEEKS</Option>
               <Option value="MONTH">LAST MONTH</Option>
               <Option value="SEASON" >
@@ -135,8 +135,60 @@ const PicList: React.FC = () => {
         </div>
         <Table className="payment_content" loading={plaidLoading} dataSource={transactionList?.transactions} columns={columns} rowKey="account_id" />
       </div>
-      <Drawer width={'40vw'} placement="right" visible={Visible} closable={false} onClose={()=>setVisible(!Visible)}>
-  <span>{curModel?.account_id}</span>
+      <Drawer width={'40vw'} placement="right" visible={Visible} closable={false} onClose={() => setVisible(!Visible)}>
+        <div className="detail_transaction">
+          <div className="transaction_title">
+            <div className="transactiomn_title_up">
+              {curModel?.pending ? <Tag>Pending</Tag> : <Tag color="#87d068">Paid</Tag>}
+              <span className="title_up_center">Transaction created on {curModel?.date}</span>
+              <span>{curModel?.date ? formatDistance(
+                Date.parse(curModel?.date),
+                Date.now(),
+                { includeSeconds: true }
+              )+' ago ' : ''}</span>
+            </div>
+            <div className="trnasaction_title_bottom">
+              <span className="title_bottom_bold">Transaction: </span>
+              <span>#{curModel?.transaction_id}</span>
+            </div>
+            <div className="title_bottom_category">
+              <span>Categoty:</span>
+                <div>
+                {curModel?.category.map((item:string,index:number)=>{
+                     let color = ColorList[item.length % ColorList.length]
+                    return <Tag color={color} key={index+'category'}>{item}</Tag>
+                  })}
+                </div>
+            </div>
+          </div>
+          <div className="transaction_detail_body1">
+              <div className="tranaction_detail_body1_sub">
+                  <span className="detail_body_sub_title">Transaction amount</span>
+                  <span className="detail_body_sub_content">{curModel?.amount}</span>
+              </div>
+              <div className="tranaction_detail_body1_sub">
+                  <span className="detail_body_sub_title">Payment Channel</span>
+                  <span className="detail_body_sub_content">{curModel?.payment_channel}</span>
+              </div>
+          </div>
+          <div className="transaction_detail_body1">
+              <div className="tranaction_detail_body1_sub">
+                  <span className="detail_body_sub_title">Transaction Name</span>
+                  <span className="detail_body_sub_content">{curModel?.name}</span>
+              </div>
+              <div className="tranaction_detail_body1_sub">
+                  <span className="detail_body_sub_title">Currency Code</span>
+                  <span className="detail_body_sub_content">{curModel?.iso_currency_code}</span>
+              </div>
+          </div>
+          <div className="transaction_detail_body1">
+              <span>Location</span>
+              
+          </div>
+          <div className="transaction_detail_body1">
+              <span>Payment Details</span>
+          </div>
+        </div>
       </Drawer>
     </div>
   )
