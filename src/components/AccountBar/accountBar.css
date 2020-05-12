@@ -1,16 +1,31 @@
 .render_account_card{
     box-shadow:3px 3px 3px #c0c7c5; 
     background-color: white;
-    width: 100%;
-    height: 100%;
+    border-radius: 10px;
+    width: 17vw;
+    height: 17vh;
+    padding: 1vw;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    justify-content: space-between;
+    
 }
 
 .account_tab_wrap{
     background-color: white;
     box-shadow:3px 3px 3px #c0c7c5;
-    width: 50vw;
+    padding: 1vw;
+    width: 60vw;
     height: 85vh;
     border-radius: 20px;
+}
+.render_card_bottom{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between !important;
+    align-items: center;
 }
 /* .ant-tabs-tab{
     width:20vw !important;
