@@ -1,5 +1,5 @@
 export default interface Owner{
-    address:{primary:boolean,data:Address}[],
+    addresses:{primary:boolean,data:Address}[],
     emails:Contact[],
     names:string[],
     phone_numbers:Contact[],
@@ -20,4 +20,8 @@ export interface Contact{
     data:string,
     primary:boolean,
     type:string
+}
+
+export function getAddress(address:Address):string{
+    return   `${address.street},${address.city},${address.region}`
 }

@@ -12,25 +12,81 @@
     justify-content: space-between;
     
 }
-
+.account_page_body{
+    width: 100%;
+    padding: 2vw;
+}
 .account_tab_wrap{
     background-color: white;
     box-shadow:3px 3px 3px #c0c7c5;
     padding: 1vw;
-    width: 60vw;
+    width: 90%;
     height: 85vh;
     border-radius: 20px;
+    margin: 0 !important;
 }
 .render_card_bottom{
     display: flex;
     flex-direction: row;
     justify-content: space-between !important;
     align-items: center;
+    flex-wrap: wrap;
 }
-/* .ant-tabs-tab{
-    width:20vw !important;
-    height: 10vw !important;
-    border-radius: 10% !important;
-    padding: 0px !important;
-    
-} */
+.ant-tabs-content{
+    margin: 0 !important;
+}
+.tab_wrap_title{
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.tab_wrap_title_left{
+    display: flex;
+    justify-content: flex-start;
+    align-items: baseline;
+   
+}
+.tab_wrap_title_left1{
+    display: flex;
+    justify-content: flex-start;
+    align-items: baseline;
+    flex-direction: column;
+}
+.tab_wrap_title_large{
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+.tab_wrap_title_small{
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: darkgray;
+}
+.tab_wrap_body{
+    margin-top: 1vw;
+}
+.tab_wrap_body_part{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-top: 1vw;
+}
+.tab_wrap_body_part_row{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-right: 3vw;
+    width: 30%;
+}
+.tab_wrap_body_part_title{
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: dimgray;
+}
+.tab_wrap_titlie{
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+.body_part_row_1{
+    display: flex;
+    flex-wrap: wrap;
+}

@@ -12,7 +12,7 @@ export  interface AccountEach{
     mask:string,
     name:string,
     official_name:string,
-    owners:Owner[]
+    owners?:Owner[]
     subtype:string,
     type:string
 }
