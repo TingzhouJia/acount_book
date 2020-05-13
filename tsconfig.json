@@ -6,11 +6,10 @@
     "allowJs": true,
     "strict": true,
     "noImplicitAny": true,
-    "types": ["@types/jest"],
+    "types": [
+      "@types/jest"
+    ],
     "baseUrl": "./src",
-    "paths": {
-      "@App/*": ["test/*"]
-    },
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "lib": [
@@ -29,6 +28,9 @@
     "src",
     "test"
   ],
-  
-  "exclude": ["node_modules", "**/*.spec.ts","**/*.test.ts"]
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts",
+    "**/*.test.ts"
+  ]
 }

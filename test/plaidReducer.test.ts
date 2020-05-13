@@ -1,4 +1,4 @@
-import reducer, {plaidType} from '../src/redux/reducer/plaidReducer'
+import reducer, {plaidType, fetchAccountList} from '../src/redux/reducer/plaidReducer'
 
 
 
@@ -14,9 +14,5 @@ const initialState: plaidType = {
 }
 
 
-
-describe('', () => {
-    
-})
 
 

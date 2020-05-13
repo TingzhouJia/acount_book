@@ -1,27 +1,39 @@
 import React, { useEffect, useState } from 'react'
-import { Tabs, Tag } from 'antd';
+import { Tabs, Tag, Table } from 'antd';
 import './accountBar.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'redux/store';
-import {  fetchIdentityList } from 'redux/reducer/plaidReducer';
+import {  fetchIdentityList, fetchTransactionList } from 'redux/reducer/plaidReducer';
 import Loading from 'components/loader/loading';
 import { AccountEach } from 'redux/model/account';
 import { Contact, Address, getAddress} from 'redux/model/owner';
+import { TransactionEach } from 'redux/model/transaction';
 
 const ColorList = ['#de6262, #ffb88c', '#bdc3c7,#2c3e50', '#ffafbd,#ffc3a0', '#cc2b5e, #753a88', '#dd5e89,#f7bb97', '#eecda3,#ef629f', '#000428 ,#004e92',
     '#ddd6f3 ,#faaca8', '#7b4397,#dc2430', '#4568dc ,#b06ab3'
 ]
 
 const AccountBar: React.FC = () => {
+    const [curtransactionList,setTransactionList]=useState<TransactionEach[]>([])
     const [activeTab, setactiveTab] = useState<string>("0")
     const dispatch = useDispatch()
-    const { plaidLoading, IdentityList } = useSelector((state: RootState) => state.plaid)
+    const { plaidLoading, IdentityList ,transactionList} = useSelector((state: RootState) => state.plaid)
     useEffect(() => {
         if (!IdentityList) {
             dispatch(fetchIdentityList())
         }
-
-    }, [dispatch, IdentityList])
+        if(!transactionList){
+            dispatch(fetchTransactionList())
+        }
+       const  getTransaction=(content:string)=>{
+            let a:AccountEach|null=IdentityList?.accounts[+content]?IdentityList?.accounts[+content]:null
+            let newList:TransactionEach[]|undefined=transactionList?.transactions.filter((each:TransactionEach)=>a?each.account_id==a.account_id:null)
+            setTransactionList(newList?newList:[])
+        }
+        if(transactionList){
+            getTransaction(activeTab)
+        }
+    }, [dispatch, IdentityList,activeTab,transactionList])
     const renderTabs = (item: AccountEach, index: number) => {
         return (
             <div onClick={() => setactiveTab(`${index}`)} className="render_account_card" style={{ background: `linear-gradient(to right,${ColorList[index % ColorList.length]})` }}>
@@ -35,7 +47,28 @@ const AccountBar: React.FC = () => {
             </div>
         );
     };
-
+    const column=[ {
+        title: 'Payment ',
+        dataIndex: 'name',
+        key: 'name',
+        width: "20%"
+      },
+      {
+        title: 'Payment Type ',
+        dataIndex: 'payment_channel',
+        key: 'payment_channel',
+      },
+      {
+        title: 'Amount',
+        dataIndex: 'amount',
+        key: 'amount',
+      },
+      {
+        title: 'Date',
+        dataIndex: 'date',
+        key: 'date',
+        sorter:(a:TransactionEach,b:TransactionEach)=>Date.parse(a.date)-Date.parse(b.date),
+      },]
     return (
         <div className="account_page_body" style={{ padding: "1vw" }}>
             {plaidLoading ? <Loading /> :
@@ -99,6 +132,9 @@ const AccountBar: React.FC = () => {
                                             </div>
                                         
                                         </div>
+                                        <Table columns={column} dataSource={curtransactionList} rowKey="account_id" loading={plaidLoading} scroll={{y:200}} pagination={false}>
+
+                                        </Table>
                                     </div>
                                 </div>
                             </Tabs.TabPane>
