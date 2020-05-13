@@ -8,7 +8,7 @@ import axios from 'axios'
 import { testRoot, Endpoint } from 'api/plaidAPI'
 import Identity from 'redux/model/identity'
 
-interface plaidType {
+export interface plaidType {
     transactionList: Transaction| null,
     balanceList: Balance | null,
     accountList: Account | null,
@@ -19,7 +19,7 @@ interface plaidType {
     error: FetchError | null
 
 }
-type FetchError = {
+export type FetchError = {
     error: string
 }
 const initialState: plaidType = {
