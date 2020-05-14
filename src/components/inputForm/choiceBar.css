@@ -1,0 +1,11 @@
+.custom_choice_bar{
+    box-shadow:3px 2px 6px #c0c7c5;
+    border-radius: 20px;
+    height: 10vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 2vh, 1vh;
+    background-color: white;
+    align-items: center;
+}

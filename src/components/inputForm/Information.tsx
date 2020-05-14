@@ -53,27 +53,7 @@ const Information:React.FC=()=>{
    },[state.date])
 
 
-    // const handleSubmit=(e)=>{
-    //     e.preventDefault()
-    //     if(!state.icon){
-    //       message.info('Oops, no icon chosen')
-    //       return;
-    //     }
-    //     if(state.type===''){
-    //         state.type="Outgoings"
-    //     }
-    //    state.tags.push(state.type,state.icon)
-       
-    //     if(state.tags.indexOf('Outgoings') !=-1){
-    //       dispatch({type:CHANGE_OUTGOINGS,data:state.price})
-    //       // this.props.changeOutgoings(this.state.price)
-    //     }else{
-    //       dispatch({type:CHANGE_INCOME,data:state.price})
-    //     }
-    //     dispatch({type:ADD_INFO,data:state})
-        
-    //     history.push('/home/viewTable')
-    // }
+
     const set=useCallback((key)=>{
       innerdispatch({type:'type',data:key})
       setChange(true)
@@ -91,7 +71,7 @@ const Information:React.FC=()=>{
           <div className="normal_info">
             
             <Form layout="inline" className="info_form">
-            <h1>NORMAL RECORD</h1>
+            <h1>Comfirm Your Record</h1>
    <Form.Item label="Description">
      <Input  onChange={getInfo} value={change?clean:state.Description} />
    </Form.Item>

@@ -17,7 +17,7 @@ const {Content,Footer}=Layout
 export const App:React.FC =()=>{
 
       return (
-        <Layout style={{backgroundColor:"#ffeadb" ,minHeight:"100vh"}}>
+        <Layout style={{ minHeight:"100vh"}}>
          <SideBar width={120} style={{
             overflow: 'auto',
             height: "100vh",
@@ -37,7 +37,7 @@ export const App:React.FC =()=>{
             <Redirect from='/' to='/home/viewTable' />
           </Switch>
         </Content>
-        <Footer/>
+        <Footer style={{backgroundColor:"#ffeadb"}}/>
         </Layout>
           
       </Layout>
