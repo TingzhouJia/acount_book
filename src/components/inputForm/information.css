@@ -11,3 +11,6 @@
     display: flex;
     flex-direction: row;
 }
+.record_select_choice{
+    width: 100%;
+}

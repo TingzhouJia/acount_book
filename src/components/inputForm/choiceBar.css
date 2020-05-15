@@ -1,11 +1,41 @@
 .custom_choice_bar{
     box-shadow:3px 2px 6px #c0c7c5;
-    border-radius: 20px;
-    height: 10vh;
+    border-radius: 10px;
+    
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 2vh, 1vh;
+    padding-top: 1vw;
+    padding-bottom: 1vw;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    min-width: 20vw;
     background-color: white;
     align-items: center;
+    margin-right: 2vw;
+    margin-bottom: 2vw;
+}
+.custom_radio_list{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: flex-start;
+}
+.selected_custom_choice_bar{
+    background-color: #ffb367;
+    color: white;
+}
+.unselected_radio{
+    border-radius: 50%;
+    width: 1vw;
+    height: 1vw;
+    border: 1px solid ;
+}
+.first_choice_bar{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding-right: 1vw;
 }

@@ -5,6 +5,7 @@ import {Icons} from '../../iconRes/icons';
 import {useDispatch} from 'react-redux'
 import {useHistory}from 'react-router-dom'
 import './information.css'
+import ChoiceBar from './choiceBar';
 
 
 const init:ReducerState={Description:'',price:0,date:'',tags:[''],icon:'',type:''}
@@ -29,12 +30,16 @@ function reducer(state:ReducerState,action:recuerAction):ReducerState{
     case 'reload':return {...init};
   }
 }
+
+const infoList=[{content:'Add new bank account for you',hint:'you need authorize plaid client to access your bank account'},
+  {content:'Add utilities to your account',hint:'this utility statement can be setup as either private or public'},
+  {content:'Add user in your group Or create a group',hint:'you can invite user in your group or create a group '}]
 const Information:React.FC=()=>{
     const [state,innerdispatch]=useReducer(reducer,init)
     const [change,setChange]=useState(false)
     const [clean,setClean]=useState<string>('')
     const [form] = Form.useForm();
-    const history=useHistory()
+
     const dispatch=useDispatch()
 
     const getInfo=useCallback((event:React.FormEvent<HTMLInputElement>):void=>{
@@ -69,8 +74,10 @@ const Information:React.FC=()=>{
         
         return (
           <div className="normal_info">
-            
-            <Form layout="inline" className="info_form">
+            <div className="record_select_choice">
+              <ChoiceBar content={infoList}/>
+            </div>
+            {/* <Form layout="inline" className="info_form">
             <h1>Comfirm Your Record</h1>
    <Form.Item label="Description">
      <Input  onChange={getInfo} value={change?clean:state.Description} />
@@ -93,10 +100,10 @@ const Information:React.FC=()=>{
          Submit
      </Button>
      
- </Form>
+ </Form> */}
  
 
-     <div className="normal_choice">
+     {/* <div className="normal_choice">
      {outgoingList.map((item,index)=>{
               return <div key={index} ><Icons type={item.icon} style={{ fontSize: '30px', color: 'black' }}/>{item.title}</div>
               })}
@@ -109,11 +116,11 @@ const Information:React.FC=()=>{
               })}
      </div>
   
-          </div>
+          </div> */}
           
-        )
+          </div>)
     
 }
 
-// Information=connect(null,{add_info,changeIncome,changeOutgoings})(Information)
+{/* // Information=connect(null,{add_info,changeIncome,changeOutgoings})(Information) */}
 export default Information
