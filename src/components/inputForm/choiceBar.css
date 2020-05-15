@@ -13,8 +13,11 @@
     max-width: 25vw;
     background-color: white;
     align-items: center;
-    
     margin-bottom: 2vw;
+}
+.custom_choice_bar:hover{
+    cursor: pointer;
+    
 }
 .custom_radio_list{
     display: flex;

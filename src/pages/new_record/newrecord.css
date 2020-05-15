@@ -9,7 +9,8 @@
     justify-content: space-between;
 }
 .new_record_service_contenr{
-    padding-top: 1vw;
-    height: 85%;
-   
+    padding-top: 2vw;
+    height: 80vh;
+    display: flex;
+  
 }

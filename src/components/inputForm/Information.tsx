@@ -1,9 +1,9 @@
-import React,{useState,useReducer, useCallback,useEffect} from 'react'
-import {Form,Input,Button,DatePicker,message} from 'antd'
-import {outgoingList,incomeList}from '../Utils/utils'
-import {Icons} from '../../iconRes/icons';
-import {useDispatch} from 'react-redux'
-import {useHistory}from 'react-router-dom'
+import React, { useState, useReducer, useCallback, useEffect } from 'react'
+import { Form, Input, Button, DatePicker, message } from 'antd'
+import { outgoingList, incomeList } from '../Utils/utils'
+import { Icons } from '../../iconRes/icons';
+import { useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 import './information.css'
 import ChoiceBar from './choiceBar';
 
@@ -30,15 +30,52 @@ import ChoiceBar from './choiceBar';
 //     case 'reload':return {...init};
 //   }
 // }
+interface Choice {
+  choice: number
+}
 
-const infoList=[{content:'Add new bank account for you',hint:'you need authorize plaid client to access your bank account'},
-  {content:'Add utilities to your account',hint:'this utility statement can be setup as either private or public'},
-  {content:'Add user in your group Or create a group',hint:'you can invite user in your group or create a group '}]
-const Information:React.FC=()=>{
+
+const Information = (props: Choice) => {
+
+
+  const AccountForm = () => {
+    return (
+      <div className="account_form">
+
+      </div>
+    )
+  }
+
+  const UtilityForm = () => {
+    return (
+      <Form form={form} className="utilities_form">
+        <div>
+        <span>Utilities Information</span>
+        <Form.Item label="Utilities Official Name" name="offical_name" rules={[
+          {
+            required: true,
+            message: 'Please input the offical name!',
+          }]}>
+          <Input />
+        </Form.Item>
+        <Form.Item name="remark_name" label="Utilities Remark Name">
+          <Input />
+        </Form.Item>
+        </div>
+       <div>
+       <span>User Information</span>
+        <Form.Item name="user_name" label="Utilities Account Username">
+          <Input />
+        </Form.Item>
+
+       </div>
+      </Form>
+    )
+  }
   //   const [state,innerdispatch]=useReducer(reducer,init)
   //   const [change,setChange]=useState(false)
   //   const [clean,setClean]=useState<string>('')
-  //   const [form] = Form.useForm();
+  const [form] = Form.useForm();
 
   //   const dispatch=useDispatch()
 
@@ -64,22 +101,20 @@ const Information:React.FC=()=>{
   //     setChange(true)
   //     setClean('')
   // },[state.type])
-    
+
   //   const getType=useCallback((event)=>{
   //     const type=event.target.value
-     
+
   //    innerdispatch({type:'icon',data:type})   
   // },[state.icon])
-   
-        
-        return (
-          <div className="normal_info">
-            <div className="record_select_choice">
-              <ChoiceBar content={infoList}/>
-            </div>
-          </div>)
-    
+
+
+  return (
+    <div className="normal_info">
+      <UtilityForm/>
+    </div>)
+
 }
 
-{/* // Information=connect(null,{add_info,changeIncome,changeOutgoings})(Information) */}
+{/* // Information=connect(null,{add_info,changeIncome,changeOutgoings})(Information) */ }
 export default Information

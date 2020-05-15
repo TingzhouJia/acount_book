@@ -1,30 +1,36 @@
 import React, { useState } from "react";
 import Information from "../../components/inputForm/Information";
-import { Drawer, Tabs, Steps, Button, message } from "antd";
+import {  Steps, Button, message } from "antd";
 import {} from '@ant-design/icons'
 import "./newrecord.css";
+import ChoiceBar from "components/inputForm/choiceBar";
 
 
 const { Step } = Steps;
+const infoList=[{content:'Add new bank account for you',hint:'you need authorize plaid client to access your bank account'},
+  {content:'Add utilities to your account',hint:'this utility statement can be setup as either private or public'},
+  {content:'Add user in your group Or create a group',hint:'you can invite user in your group or create a group '}]
 
-const steps = [
-  {
-    title: 'Service Selection',
-    content: <Information/>,
-  },
-  {
-    title: 'Second',
-    content: 'Second-content',
-  },
-  {
-    title: 'Last',
-    content: 'Last-content',
-  },
-];
 
 //添加新记录的组件
 const NewRecord:React.FC = () => {
-
+  const [formChoice, setFormChoice] = useState(0)
+  const steps = [
+    {
+      title: 'Service Selection',
+      content:  <div className="record_select_choice">
+      <ChoiceBar content={infoList} callback={(index:number)=>setFormChoice(index)}/>
+    </div>,
+    },
+    {
+      title: 'Register Information',
+    content: <Information choice={0}/>,
+    },
+    {
+      title: 'Last',
+      content: 'Last-content',
+    },
+  ];
   const [curStep, setcurStep] = useState(0)
   const nextStep=()=>{
     setcurStep((prev)=>prev+1)

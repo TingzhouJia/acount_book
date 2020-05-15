@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import './choiceBar.css'
 import {  CheckCircleFilled } from '@ant-design/icons'
 interface Bars {
-    content:eachInfo[]
+    content:eachInfo[],
+    callback:(index:any)=>any
 }
 interface eachInfo{
     content:string,
@@ -13,10 +14,17 @@ interface eachInfo{
 const imgList=['/automated-invoicing.png','/billing2020-tn3-01.png','/Subscription-Billing-Operations.png']
 const ChoiceBar=(props:Bars) => {
     const [selected, setSelected] = useState(0)
+    const change=useCallback(
+        (cur:number) => {
+            setSelected(cur);
+            props.callback(cur)
+        },
+        [selected],
+    )
     const EachBar = (curprops:eachInfo) => {
         const {cur,content,hint}=curprops
         return (
-            <div className={`custom_choice_bar ${selected==cur?'selected_custom_choice_bar':''}`} onClick={() => setSelected(cur?cur:0)} >
+            <div className={`custom_choice_bar ${selected==cur?'selected_custom_choice_bar':''}`} onClick={() => change(cur?cur:0)} >
                  <img src={imgList[cur?cur:0]}  style={{height:"50%",width:"100%"}}/>
             <div className="first_choice_bar">
            
