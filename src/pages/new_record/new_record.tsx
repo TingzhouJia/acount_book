@@ -34,7 +34,7 @@ const NewRecord:React.FC = () => {
   }
   return (
     <div className="new_record" style={{ padding: "1vw" }}>
-         <Steps current={curStep} onChange={(current)=>setcurStep(current)}>
+         <Steps current={curStep}>
           {steps.map(item => (
             <Step key={item.title} title={item.title}  />
           ))}

@@ -3,12 +3,13 @@
     margin: 1vw;
     box-shadow:3px 3px 4px #c0c7c5;
     border-radius: 20px;
-    height: 85vh;
+    min-height: 85vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 .new_record_service_contenr{
+    padding-top: 1vw;
     height: 85%;
    
 }
