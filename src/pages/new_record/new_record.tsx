@@ -24,7 +24,7 @@ const NewRecord:React.FC = () => {
     },
     {
       title: 'Register Information',
-    content: <Information choice={0}/>,
+    content: <Information choice={0} submit={()=>nextStep()}/>,
     },
     {
       title: 'Last',
@@ -49,7 +49,7 @@ const NewRecord:React.FC = () => {
           { steps[curStep].content}
         </div>
         <div>
-        {curStep < steps.length - 1 && (
+        {curStep ==0 && (
             <Button type="primary" onClick={()=>nextStep()}>
               Next
             </Button>

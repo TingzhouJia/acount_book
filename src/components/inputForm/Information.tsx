@@ -6,9 +6,10 @@ import { Icons } from '../../iconRes/icons';
 import './information.css'
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 
-const {  RangePicker } = DatePicker;
+const { RangePicker } = DatePicker;
 interface Choice {
-  choice: number
+  choice: number,
+  submit:()=>void
 }
 interface PriceValue {
   num?: number,
@@ -51,9 +52,8 @@ const Information = (props: Choice) => {
     };
 
     return (
-      <Form form={form} style={{padding:"1vw"}} onFinish={(values)=>console.log(values)} >
-        <div className="utilities_form">
-        <div style={{paddingRight:"2vw"}}>
+      <div className="utilities_form">
+        <div style={{ paddingRight: "2vw" }}>
           <span>Utilities Information</span>
           <Form.Item label="Utilities Official Name" name="offical_name" rules={[
             {
@@ -90,109 +90,91 @@ const Information = (props: Choice) => {
         </div>
         <div>
           <span>User Information</span>
+          <Form.Item label="Primary Contact" name="primary_name">
+              <Input />
+          </Form.Item>
+          <Form.Item label="Primary Address" name="primary_name">
+              <Input />
+          </Form.Item>
+          <Form.Item label="Primary Email" name="primary_name">
+              <Input />
+          </Form.Item>
           <Form.List name="names">
-        {(fields, { add, remove }) => {
-          return (
-            <div>
-              {fields.map((field, index) => (
-                <Form.Item
-                  {...(index === 0 ? formItemLayout : formItemLayoutWithOutLabel)}
-                  label={index === 0 ? 'Primary Contact' : 'Candidate Contact'}
-                  required={false}
-                  key={field.key}
-                >
-                  <Form.Item
-                    {...field}
-                    validateTrigger={['onChange', 'onBlur']}
-                    rules={[
-                      {
-                        required: true,
-                        whitespace: true,
-                        message: "Please input contact's name or delete this field.",
-                      },
-                    ]}
-                    noStyle
-                  >
-                    <Input placeholder="contact name" style={{ width: '80%' }} />
-                  </Form.Item>
-                 
-                  {fields.length > 1 ? (
-                    <MinusCircleOutlined
-                      className="dynamic-delete-button"
-                      style={{ margin: '0 8px' }}
+            {(fields, { add, remove }) => {
+              return (
+                <div>
+                  {fields.map((field, index) => (
+                    <Form.Item
+                      {...(index === 0 ? formItemLayout : formItemLayoutWithOutLabel)}
+                      label={'Candidate Contact'}
+                      required={false}
+                      key={field.key}
+                    >
+                      <Form.Item
+                        {...field}
+                        validateTrigger={['onChange', 'onBlur']}
+                        rules={[
+                          {
+                            required: true,
+                            whitespace: true,
+                            message: "Please input contact's name or delete this field.",
+                          },
+                        ]}
+                        noStyle
+                      >
+                        <Input placeholder="contact name" style={{ width: '80%' }} />
+                      </Form.Item>
+                      
+                      {fields.length > 1 ? (
+                        <MinusCircleOutlined
+                          className="dynamic-delete-button"
+                          style={{ margin: '0 8px' }}
+                          onClick={() => {
+                            remove(field.name);
+                          }}
+                        />
+                      ) : null}
+                    </Form.Item>
+                  ))}
+                  <Form.Item>
+                    <Button
+                      type="dashed"
                       onClick={() => {
-                        remove(field.name);
+                        add();
                       }}
-                    />
-                  ) : null}
-                </Form.Item>
-              ))}
-              <Form.Item>
-                <Button
-                  type="dashed"
-                  onClick={() => {
-                    add();
-                  }}
-                  style={{ width: '100%' }}
-                >
-                  <PlusOutlined /> Add field
-                </Button>
-              </Form.Item>
-            </div>
-          );
-        }}
-      </Form.List>
+                      style={{ width: '100%' }}
+                    >
+                      <PlusOutlined /> Add field
+              </Button>
+                  </Form.Item>
+                </div>
+              );
+            }}
+          </Form.List>
 
         </div>
-        </div>
-        <Form.Item>
-        <Button type="primary" htmlType="submit">
-          Submit
-        </Button>
-      </Form.Item>
-      </Form>
+      </div>
+
+
     )
   }
-  //   const [state,innerdispatch]=useReducer(reducer,init)
-  //   const [change,setChange]=useState(false)
-  //   const [clean,setClean]=useState<string>('')
+
   const [form] = Form.useForm();
-
-  //   const dispatch=useDispatch()
-
-  //   const getInfo=useCallback((event:React.FormEvent<HTMLInputElement>):void=>{
-  //     setChange(false)
-  //     const description=event.currentTarget.value
-  //     innerdispatch({type:'discription',data:description})
-  // },[state.Description])
-
-  //   const handleNumberChange=useCallback((event)=>{
-  //       setChange(false)
-  //       const price=(event.target.value)/1
-  //       innerdispatch({type:'price',data:price})
-  //   },[state.price])
-  //   const getDate=useCallback((date,dateString)=>{
-  //     innerdispatch({type:'date',data:dateString})
-  //  },[state.date])
-
-
-
-  //   const set=useCallback((key)=>{
-  //     innerdispatch({type:'type',data:key})
-  //     setChange(true)
-  //     setClean('')
-  // },[state.type])
-
-  //   const getType=useCallback((event)=>{
-  //     const type=event.target.value
-
-  //    innerdispatch({type:'icon',data:type})   
-  // },[state.icon])
 
 
   return (
     <div className="normal_info">
-      <UtilityForm />
+      <Form form={form} style={{ padding: "1vw" }} onFinish={(values) => {
+        props.submit()
+        console.log(values)}} >
+        <UtilityForm />
+        <Form.Item>
+          <Button type="primary" htmlType="submit">
+            Submit
+        </Button>
+        </Form.Item>
+      </Form>
+
     </div>)
 
 }
