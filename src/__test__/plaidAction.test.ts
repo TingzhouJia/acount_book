@@ -2,8 +2,8 @@ import thunk ,{ThunkDispatch}from "redux-thunk"
 import configureMockStore from 'redux-mock-store'
 
 import fetchMock from 'fetch-mock'
-import {fetchTransactionList, fetchAccountList} from '../src/redux/reducer/plaidReducer'
-import expect from 'expect'
+import {fetchTransactionList, fetchAccountList} from '../redux/reducer/plaidReducer'
+
 import {AnyAction, CombinedState} from 'redux'
 const middlewares = [thunk]
 
